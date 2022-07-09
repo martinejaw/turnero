@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import { SecurityService } from 'src/core/security/security.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -26,7 +26,7 @@ export class UsersService {
     return `This action returns all users`;
   }
 
-  findOne(id: number) {
+  findByPk(id: number) {
     return `This action returns a #${id} user`;
   }
 
@@ -36,5 +36,26 @@ export class UsersService {
 
   remove(id: number) {
     return `This action removes a #${id} user`;
+  }
+
+  async find(params: {
+    skip?: number;
+    take?: number;
+    cursor?: Prisma.UserWhereUniqueInput;
+    where?: Prisma.UserWhereInput;
+    orderBy?: Prisma.UserOrderByWithRelationInput;
+  }): Promise<User[]> {
+    const { skip, take, cursor, where, orderBy } = params;
+    return this.prisma.user.findMany({
+      skip,
+      take,
+      cursor,
+      where,
+      orderBy,
+    });
+  }
+
+  async findOne(where: Prisma.UserWhereUniqueInput): Promise<User> {
+    return this.prisma.user.findUnique({ where });
   }
 }

@@ -7,11 +7,13 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { JwtAuthGuard } from 'src/core/security/auth/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -27,9 +29,10 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.findOne(id);
+    return this.usersService.findByPk(id);
   }
 
   @Patch(':id')

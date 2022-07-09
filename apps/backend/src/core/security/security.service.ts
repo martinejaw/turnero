@@ -8,4 +8,8 @@ export class SecurityService {
     const hash = await bcrypt.hash(password, saltOrRounds);
     return hash;
   }
+
+  async compare(plain: string, hashed: string) {
+    return await bcrypt.compare(plain, hashed);
+  }
 }

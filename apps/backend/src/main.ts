@@ -7,6 +7,9 @@ import helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Cors
+  app.enableCors();
+
   // Add validation pipe
   app.useGlobalPipes(new ValidationPipe());
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LoginService } from './login.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,7 @@ import { LoginService } from './login.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private loginService: LoginService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   async submit() {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
-      const resp = await this.loginService.login(
+      this.authService.login(
         this.form.value.username,
         this.form.value.password
       );

@@ -32,7 +32,7 @@ export class AuthService {
 
     return {
       user: userDto,
-      access_token: this.jwtTokenService.sign(payload),
+      accessToken: this.jwtTokenService.sign(payload),
     };
   }
 }

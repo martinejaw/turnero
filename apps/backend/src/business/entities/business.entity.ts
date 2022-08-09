@@ -1,1 +1,4 @@
-export class Business {}
+export class Business {
+  id: number;
+  name: string;
+}

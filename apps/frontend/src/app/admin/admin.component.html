@@ -1,0 +1,6 @@
+<p>admin works!</p>
+<p>{{ (userSlice$ | async)?.loading }}</p>
+<div *ngIf="(userSlice$ | async)?.user">
+  <p>{{ (userSlice$ | async)?.user?.id }}</p>
+  <p>{{ (userSlice$ | async)?.user?.email }}</p>
+</div>

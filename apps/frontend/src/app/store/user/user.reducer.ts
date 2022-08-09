@@ -2,9 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import { login } from './user.actions';
 import { User } from './user.type';
 
-type LoadingState = { loading: true };
-type LoadedState = { loading: false; user: User };
-export type UserState = LoadedState | LoadingState;
+export type UserState = { loading: boolean; user?: User };
 
 export const initialState: UserState = {
   loading: true,

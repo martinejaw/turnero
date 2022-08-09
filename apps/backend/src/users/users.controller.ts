@@ -15,6 +15,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { JwtAuthGuard } from 'src/core/security/auth/jwt-auth.guard';
 
+// TODO: use AuthGuards
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

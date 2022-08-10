@@ -8,6 +8,7 @@ import { BusinessModule } from './business/business.module';
 import { BranchesModule } from './branches/branches.module';
 import { AppointmentGroupsModule } from './appointment-groups/appointment-groups.module';
 import { ProcedureTypesModule } from './procedure-types/procedure-types.module';
+import { AppointmentsModule } from './appointments/appointments.module';
 
 const globalModules = [PrismaModule, SecurityModule];
 
@@ -17,6 +18,7 @@ const resourceModules = [
   BranchesModule,
   AppointmentGroupsModule,
   ProcedureTypesModule,
+  AppointmentsModule,
 ];
 
 @Module({

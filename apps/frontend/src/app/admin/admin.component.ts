@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store';
 
@@ -9,8 +10,25 @@ import { AppState } from '../store';
 })
 export class AdminComponent implements OnInit {
   userSlice$ = this.store.select('userSlice');
+  businessSlice$ = this.store.select('businessSlice');
 
-  constructor(private store: Store<AppState>) {}
+  mobileQuery: MediaQueryList;
+
+  private _mobileQueryListener: () => void;
+
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private store: Store<AppState>
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
 
   ngOnInit(): void {}
 }

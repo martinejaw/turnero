@@ -2,6 +2,7 @@ import { User } from 'src/app/store/user/user.type';
 
 export interface LoginResponse {
   user: User;
+  business: Business;
   accessToken: string;
 }
 

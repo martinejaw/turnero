@@ -4,6 +4,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -14,6 +17,9 @@ const modules = [
   MatInputModule,
   MatButtonModule,
   MatIconModule,
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
 ];
 
 @NgModule({

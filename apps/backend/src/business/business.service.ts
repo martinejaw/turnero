@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import { CreateBusinessDto } from './dto/create-business.dto';
 
@@ -23,5 +24,9 @@ export class BusinessService {
 
   findOne(id: number) {
     return this.prisma.business.findUnique({ where: { id } });
+  }
+
+  findUnique(where: Prisma.BusinessWhereUniqueInput) {
+    return this.prisma.business.findUnique({ where });
   }
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
+import { BusinessService } from 'src/business/business.service';
 import { UsersService } from 'src/users/users.service';
 import { SecurityService } from '../security.service';
 import { AuthUserDto } from './dto/auth-user.dto';
@@ -9,6 +10,7 @@ import { AuthUserDto } from './dto/auth-user.dto';
 export class AuthService {
   constructor(
     private usersService: UsersService,
+    private businessService: BusinessService,
     private jwtTokenService: JwtService,
     private securityService: SecurityService,
   ) {}
@@ -30,8 +32,11 @@ export class AuthService {
     const payload = { email: user.email, sub: user.id };
     const { password, ...userDto } = user;
 
+    const business = await this.businessService.findUnique({ userId: user.id });
+
     return {
       user: userDto,
+      business,
       accessToken: this.jwtTokenService.sign(payload),
     };
   }

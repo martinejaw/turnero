@@ -27,7 +27,7 @@ export class AuthService {
         password,
       })
     );
-    this.store.dispatch(login({ user: resp.user }));
+    this.store.dispatch(login({ user: resp.user, business: resp.business }));
     this.setAccessToken(resp.accessToken);
     this.router.navigate(['/admin']);
   }
@@ -40,7 +40,7 @@ export class AuthService {
         businessName,
       })
     );
-    this.store.dispatch(login({ user: resp.user }));
+    this.store.dispatch(login({ user: resp.user, business: resp.business }));
     this.setAccessToken(resp.accessToken);
     this.router.navigate(['/admin']);
   }

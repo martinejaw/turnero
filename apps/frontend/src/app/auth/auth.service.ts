@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { lastValueFrom, take } from 'rxjs';
 import { AppState } from '../store';
-import { login } from '../store/user/user.actions';
+import { login, logout } from '../store/user/user.actions';
 import { LoginResponse, SignUpResponse } from './types/LoginResponse';
 
 @Injectable({
@@ -50,11 +50,42 @@ export class AuthService {
     localStorage.setItem('accessToken', accessToken);
   }
 
+  async clearAccessToken() {
+    this.accessToken = undefined;
+    localStorage.removeItem('accessToken');
+  }
+
   isAuthenticated() {
     let user;
     this.userSlice$
       .pipe(take(1))
       .subscribe((userState) => (user = userState.user));
     return user ? true : false;
+  }
+
+  async retrieveState() {
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) return;
+    try {
+      const resp = await lastValueFrom(
+        this.http.get<SignUpResponse>(
+          'http://localhost:3000/auth/retrieve-state',
+          {
+            params: { accessToken },
+          }
+        )
+      );
+      this.store.dispatch(login({ user: resp.user, business: resp.business }));
+      this.setAccessToken(accessToken);
+      this.router.navigate(['/admin']);
+    } catch {
+      return;
+    }
+  }
+
+  async logout() {
+    this.clearAccessToken();
+    this.store.dispatch(logout());
+    this.router.navigate(['/login']);
   }
 }

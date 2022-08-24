@@ -5,6 +5,7 @@ import { BusinessService } from 'src/business/business.service';
 import { UsersService } from 'src/users/users.service';
 import { SecurityService } from '../security.service';
 import { AuthUserDto } from './dto/auth-user.dto';
+import { SessionDataDto } from './dto/session-data.dto';
 
 @Injectable()
 export class AuthService {
@@ -38,6 +39,20 @@ export class AuthService {
       user: userDto,
       business,
       accessToken: this.jwtTokenService.sign(payload),
+    };
+  }
+
+  async retrieveState(accessToken: string): Promise<SessionDataDto> {
+    this.jwtTokenService.verify(accessToken);
+    const payload = this.jwtTokenService.decode(accessToken);
+    const { sub: userId } = payload;
+
+    const user = await this.usersService.findOne({ id: userId });
+    const business = await this.businessService.findUnique({ userId: user.id });
+
+    return {
+      user,
+      business,
     };
   }
 }

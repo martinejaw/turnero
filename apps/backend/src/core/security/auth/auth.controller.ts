@@ -1,8 +1,20 @@
-import { Controller, Request, Post, UseGuards, Body } from '@nestjs/common';
+import {
+  Controller,
+  Request,
+  Post,
+  UseGuards,
+  Body,
+  Get,
+  Param,
+  Query,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { BusinessService } from 'src/business/business.service';
 import { UsersService } from 'src/users/users.service';
 import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/auth-user.dto';
+import { SessionDataDto } from './dto/session-data.dto';
 import { LocalAuthGuard } from './local-auth.guard';
 
 @Controller('auth')
@@ -31,5 +43,16 @@ export class AuthController {
       ...(await this.authService.loginWithCredentials(user)),
     };
     return response;
+  }
+
+  @Get('retrieve-state')
+  async retrieveState(
+    @Query('accessToken') accessToken: string,
+  ): Promise<SessionDataDto> {
+    try {
+      return await this.authService.retrieveState(accessToken);
+    } catch {
+      throw new HttpException('Invalid token', HttpStatus.BAD_REQUEST);
+    }
   }
 }

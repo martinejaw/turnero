@@ -5,6 +5,6 @@ import { AuthService } from './auth.service';
   declarations: [],
   imports: [],
   providers: [AuthService],
-  exports: [AuthService]
+  exports: [],
 })
 export class AuthModule {}

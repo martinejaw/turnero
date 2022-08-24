@@ -6,3 +6,5 @@ export const login = createAction(
   '[User State] Login',
   props<{ user: User; business: Business }>()
 );
+
+export const logout = createAction('[User State] Logout');

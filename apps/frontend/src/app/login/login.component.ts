@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
+    email: new FormControl(''),
     password: new FormControl(''),
   });
 
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
       this.authService.login(
-        this.form.value.username,
+        this.form.value.email,
         this.form.value.password
       );
     }

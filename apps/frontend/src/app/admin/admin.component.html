@@ -4,5 +4,11 @@
   <div *ngIf="(userSlice$ | async)?.user">
     <p>{{ (userSlice$ | async)?.user?.id }}</p>
     <p>{{ (userSlice$ | async)?.user?.email }}</p>
+    <app-menu-card
+      *ngFor="let item of menuItems"
+      [title]="item.title"
+      [source]="item.source"
+      [content]="item.content"
+    ></app-menu-card>
   </div>
 </app-navbar>

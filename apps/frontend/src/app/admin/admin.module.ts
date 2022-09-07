@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { MaterialModule } from '../material.module';
 import { NavbarComponent } from '../common/navbar/navbar.component';
+import { MenuCardComponent } from '../common/menu-card/menu-card.component';
 
 const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
@@ -12,7 +13,7 @@ const routes: Routes = [
 
 @NgModule({
   providers: [AuthGuard],
-  declarations: [AdminComponent, NavbarComponent],
+  declarations: [AdminComponent, NavbarComponent, MenuCardComponent],
   imports: [CommonModule, RouterModule.forRoot(routes), MaterialModule],
   exports: [RouterModule],
 })

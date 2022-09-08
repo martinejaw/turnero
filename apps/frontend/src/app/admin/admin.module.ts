@@ -6,9 +6,23 @@ import { AuthGuard } from '../auth/auth.guard';
 import { MaterialModule } from '../material.module';
 import { NavbarComponent } from '../common/navbar/navbar.component';
 import { MenuCardComponent } from '../common/menu-card/menu-card.component';
+import { Paths } from 'src/config/paths';
+import { SucursalesComponent } from './sucursales/sucursales.component';
 
 const routes: Routes = [
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  //TODO Cambiar Componentes
+  { path: Paths.ADMIN, component: AdminComponent, canActivate: [AuthGuard] },
+  {
+    path: Paths.SUCURSAL,
+    component: SucursalesComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: Paths.TURNOS, component: AdminComponent, canActivate: [AuthGuard] },
+  {
+    path: Paths.TIPO_TURNOS,
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

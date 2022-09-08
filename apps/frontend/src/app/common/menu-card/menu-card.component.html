@@ -1,8 +1,8 @@
-<mat-card class="example-card" (click)="funcion(title)">
+<mat-card class="example-card" (click)="redirect()">
   <mat-card-title-group>
     <mat-card-title>{{ title }}</mat-card-title>
     <mat-card-subtitle>Extra large</mat-card-subtitle>
-    <img mat-card-xl-image [src]="source" />
+    <mat-icon class="size-24">{{ source }}</mat-icon>
   </mat-card-title-group>
   <mat-card-content>
     {{ content }}

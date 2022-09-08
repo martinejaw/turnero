@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-card',
@@ -9,12 +10,14 @@ export class MenuCardComponent implements OnInit {
   @Input() title = '';
   @Input() source = '';
   @Input() content = '';
+  @Input() path = '';
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
-  funcion(titulo: string): void {
-    console.log('CLICK:', titulo);
+  redirect(): void {
+    console.log(this.path);
+    this.router.navigate([this.path]);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Paths } from 'src/config/paths';
 import { AppState } from '../store';
 
 @Component({
@@ -14,13 +15,21 @@ export class AdminComponent implements OnInit {
   menuItems = [
     {
       title: 'Sucursal',
-      source: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-      content: 'Lorem Ipsum',
+      source: 'playlist_add',
+      content: 'Sucursal',
+      path: Paths.SUCURSAL,
     },
     {
-      title: 'Sucursal 2',
-      source: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-      content: 'Lorem Ipsum',
+      title: 'Tipos de Turnos',
+      source: 'alarm_on',
+      content: 'Tipos de Turnos',
+      path: Paths.TIPO_TURNOS,
+    },
+    {
+      title: 'Turnos',
+      source: 'calendar_today',
+      content: 'Turnos',
+      path: Paths.TURNOS,
     },
   ];
 

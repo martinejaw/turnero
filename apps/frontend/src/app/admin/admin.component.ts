@@ -1,7 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Paths } from 'src/config/paths';
+import { AdminPaths, Paths } from 'src/config/paths';
 import { AppState } from '../store';
+
+interface MenuItem {
+  title: string;
+  source: string;
+  content: string;
+  path: AdminPaths;
+}
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +19,7 @@ export class AdminComponent implements OnInit {
   userSlice$ = this.store.select('userSlice');
   businessSlice$ = this.store.select('businessSlice');
 
-  menuItems = [
+  menuItems: MenuItem[] = [
     {
       title: 'Sucursal',
       source: 'playlist_add',

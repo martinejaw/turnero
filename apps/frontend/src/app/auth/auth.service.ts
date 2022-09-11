@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { lastValueFrom, take } from 'rxjs';
+import { ApiPaths } from 'src/config/apiPaths';
 import { AppState } from '../store';
 import { login, logout } from '../store/user/user.actions';
 import { LoginResponse, SignUpResponse } from './types/LoginResponse';
@@ -22,25 +23,37 @@ export class AuthService {
 
   async login(email: string, password: string) {
     const resp = await lastValueFrom(
-      this.http.post<LoginResponse>('http://localhost:3000/auth/login', {
+      this.http.post<LoginResponse>(ApiPaths.login, {
         email,
         password,
       })
     );
-    this.store.dispatch(login({ user: resp.user, business: resp.business }));
+    this.store.dispatch(
+      login({
+        user: resp.user,
+        business: resp.business,
+        branches: resp.branches,
+      })
+    );
     this.setAccessToken(resp.accessToken);
     this.router.navigate(['/admin']);
   }
 
   async signup(email: string, password: string, businessName: string) {
     const resp = await lastValueFrom(
-      this.http.post<SignUpResponse>('http://localhost:3000/auth/signup', {
+      this.http.post<SignUpResponse>(ApiPaths.signup, {
         email,
         password,
         businessName,
       })
     );
-    this.store.dispatch(login({ user: resp.user, business: resp.business }));
+    this.store.dispatch(
+      login({
+        user: resp.user,
+        business: resp.business,
+        branches: resp.branches,
+      })
+    );
     this.setAccessToken(resp.accessToken);
     this.router.navigate(['/admin']);
   }
@@ -68,14 +81,17 @@ export class AuthService {
     if (!accessToken) return;
     try {
       const resp = await lastValueFrom(
-        this.http.get<SignUpResponse>(
-          'http://localhost:3000/auth/retrieve-state',
-          {
-            params: { accessToken },
-          }
-        )
+        this.http.get<SignUpResponse>(ApiPaths.retrieveState, {
+          params: { accessToken },
+        })
       );
-      this.store.dispatch(login({ user: resp.user, business: resp.business }));
+      this.store.dispatch(
+        login({
+          user: resp.user,
+          business: resp.business,
+          branches: resp.branches,
+        })
+      );
       this.setAccessToken(accessToken);
       this.router.navigate(['/admin']);
     } catch {

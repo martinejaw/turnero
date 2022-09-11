@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
+import { BranchesService } from 'src/branches/branches.service';
 import { BusinessService } from 'src/business/business.service';
 import { UsersService } from 'src/users/users.service';
 import { SecurityService } from '../security.service';
@@ -12,6 +13,7 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private businessService: BusinessService,
+    private branchesService: BranchesService,
     private jwtTokenService: JwtService,
     private securityService: SecurityService,
   ) {}
@@ -34,10 +36,14 @@ export class AuthService {
     const { password, ...userDto } = user;
 
     const business = await this.businessService.findUnique({ userId: user.id });
+    const branches = await this.branchesService.findBy({
+      businessId: business.id,
+    });
 
     return {
       user: userDto,
       business,
+      branches,
       accessToken: this.jwtTokenService.sign(payload),
     };
   }
@@ -49,10 +55,14 @@ export class AuthService {
 
     const user = await this.usersService.findOne({ id: userId });
     const business = await this.businessService.findUnique({ userId: user.id });
+    const branches = await this.branchesService.findBy({
+      businessId: business.id,
+    });
 
     return {
       user,
       business,
+      branches,
     };
   }
 }

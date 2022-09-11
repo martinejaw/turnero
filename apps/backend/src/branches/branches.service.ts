@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
 
@@ -18,5 +19,9 @@ export class BranchesService {
 
   findOne(id: number) {
     return this.prisma.branch.findUnique({ where: { id } });
+  }
+
+  findBy(where: Prisma.BranchWhereInput) {
+    return this.prisma.branch.findMany({ where });
   }
 }

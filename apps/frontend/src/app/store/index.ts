@@ -31,3 +31,7 @@ export const selectBranches = createSelector(
   selectBranchesSlice,
   (state: BranchesState) => state.branches
 );
+export const selectBranchesCount = createSelector(
+  selectBranchesSlice,
+  (state: BranchesState) => (state.branches ? state.branches.length : 0)
+);

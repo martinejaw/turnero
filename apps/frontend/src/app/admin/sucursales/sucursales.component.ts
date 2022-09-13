@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { AppState, selectBranches } from 'src/app/store';
+import { AppState, selectBranches } from 'src/app/core/store';
 import { MaterialModule } from '../../material.module';
 import { SucursalService } from './sucursales.service';
 

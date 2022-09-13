@@ -1,5 +1,5 @@
-import { Branch } from 'src/app/store/branches/branches.type';
-import { User } from 'src/app/store/user/user.type';
+import { Branch } from '../../store/branches/branches.type';
+import { User } from '../../store/user/user.type';
 
 export interface LoginResponse {
   user: User;

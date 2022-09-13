@@ -1,8 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthService } from 'src/app/auth/auth.service';
-import { AppState } from 'src/app/store';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppState } from 'src/app/core/store';
 
 @Component({
   selector: 'app-navbar',

@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth/auth.guard';
 import { MaterialModule } from '../material.module';
-import { NavbarComponent } from '../common/navbar/navbar.component';
-import { MenuCardComponent } from '../common/menu-card/menu-card.component';
 import { Paths } from 'src/config/paths';
 import { SucursalesComponent } from './sucursales/sucursales.component';
+import { AuthGuard } from '../core/auth/guards/auth.guard';
+import { MenuCardComponent } from '../shared/menu-card/menu-card.component';
 
 const routes: Routes = [
   //TODO Cambiar Componentes
@@ -27,7 +26,7 @@ const routes: Routes = [
 
 @NgModule({
   providers: [AuthGuard],
-  declarations: [AdminComponent, NavbarComponent, MenuCardComponent],
+  declarations: [AdminComponent, MenuCardComponent],
   imports: [CommonModule, RouterModule.forRoot(routes), MaterialModule],
   exports: [RouterModule],
 })

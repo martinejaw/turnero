@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +20,7 @@ export class LoginComponent implements OnInit {
   async submit() {
     if (this.form.valid) {
       this.submitEM.emit(this.form.value);
-      this.authService.login(
-        this.form.value.email,
-        this.form.value.password
-      );
+      this.authService.login(this.form.value.email, this.form.value.password);
     }
   }
   @Input() error: string | null = null;

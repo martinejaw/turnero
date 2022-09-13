@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { lastValueFrom, take } from 'rxjs';
-import { AppState } from 'src/app/store';
+import { lastValueFrom } from 'rxjs';
+import { AppState } from 'src/app/core/store';
 import {
   addBranch,
   deleteBranch,
-} from 'src/app/store/branches/branches.actions';
-import { getState } from 'src/app/store/utils';
+} from 'src/app/core/store/branches/branches.actions';
+import { getState } from 'src/app/core/store/utils';
 import { ApiPaths } from 'src/config/apiPaths';
 import { BranchResponse } from '../dtoTypes';
 

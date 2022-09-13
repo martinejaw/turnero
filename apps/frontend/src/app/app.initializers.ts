@@ -1,5 +1,5 @@
 import { APP_INITIALIZER } from '@angular/core';
-import { AuthService } from './auth/auth.service';
+import { AuthService } from './core/auth/auth.service';
 
 const Initializers = [
   {

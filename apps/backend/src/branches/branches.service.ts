@@ -24,4 +24,12 @@ export class BranchesService {
   findBy(where: Prisma.BranchWhereInput) {
     return this.prisma.branch.findMany({ where });
   }
+
+  deleteBy(id: number) {
+    try {
+      return this.prisma.branch.delete({ where: { id } });
+    } catch {
+      console.log('Error en el borrado de sucursal.');
+    }
+  }
 }

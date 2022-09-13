@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { BranchesService } from './branches.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
 
@@ -9,6 +9,11 @@ export class BranchesController {
   @Post()
   create(@Body() createBranchDto: CreateBranchDto) {
     return this.branchesService.create(createBranchDto);
+  }
+
+  @Delete(':id')
+  deleteById(@Param('id') id: string) {
+    return this.branchesService.deleteBy(+id);
   }
 
   @Get()

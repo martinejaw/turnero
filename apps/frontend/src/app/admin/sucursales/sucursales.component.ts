@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppState, selectBranches } from 'src/app/store';
 import { MaterialModule } from '../../material.module';
@@ -18,13 +19,14 @@ export class SucursalesComponent implements OnInit {
 
   constructor(
     private sucursalService: SucursalService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
   form: FormGroup = new FormGroup({
-    address: new FormControl(''),
+    address: new FormControl('', Validators.required),
   });
 
   async submit() {
@@ -33,5 +35,13 @@ export class SucursalesComponent implements OnInit {
       this.sucursalService.createBranch(address);
       this.form.reset();
     }
+  }
+
+  volver() {
+    this.router.navigate(['/admin']);
+  }
+
+  delete(id: number) {
+    this.sucursalService.deleteBranch(id);
   }
 }

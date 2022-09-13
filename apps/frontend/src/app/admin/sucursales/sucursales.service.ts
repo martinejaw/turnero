@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { lastValueFrom, take } from 'rxjs';
 import { AppState } from 'src/app/store';
-import { addBranch } from 'src/app/store/branches/branches.actions';
+import {
+  addBranch,
+  deleteBranch,
+} from 'src/app/store/branches/branches.actions';
 import { getState } from 'src/app/store/utils';
 import { ApiPaths } from 'src/config/apiPaths';
 import { BranchResponse } from '../dtoTypes';
@@ -24,5 +27,15 @@ export class SucursalService {
     );
 
     this.store.dispatch(addBranch({ branch: resp }));
+  }
+
+  async deleteBranch(id: number) {
+    const appState = getState(this.store);
+
+    const resp = await lastValueFrom(
+      this.http.delete<any>(`${ApiPaths.branches}/${id}`)
+    );
+
+    this.store.dispatch(deleteBranch({ id }));
   }
 }

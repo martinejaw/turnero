@@ -7,6 +7,16 @@
   <mat-icon>add</mat-icon>
 </button>
 
+<button
+  mat-raised-button
+  color="primary"
+  aria-label="Example icon button with a home icon"
+  (click)="volver()"
+>
+  <mat-icon>keyboard_arrow_left</mat-icon>
+  Volver
+</button>
+
 <mat-card>
   <mat-card-title>Agregar sucursal</mat-card-title>
   <mat-card-content>
@@ -30,14 +40,18 @@
 </mat-card>
 
 <div>
-  <ul *ngFor="let branch of branchesSlice$ | async">
-    Id:
-    {{
-      branch.id
-    }}
-    - Address:
-    {{
-      branch.address
-    }}
-  </ul>
+  <mat-nav-list>
+    <mat-list-item *ngFor="let branch of branchesSlice$ | async">
+      <p>
+        Id:
+        {{ branch.id }}
+        - Address:
+        {{ branch.address }}
+      </p>
+
+      <button mat-list-item (click)="delete(branch.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-nav-list>
 </div>

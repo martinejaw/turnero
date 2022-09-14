@@ -12,14 +12,11 @@ export const initialState: BranchesState = {
 
 export const branchesReducer = createReducer(
   initialState as BranchesState,
-  on(login, (state, action) => ({
+  on(login, (_, action) => ({
     loading: false,
     branches: action.branches,
   })),
-  on(logout, (state, action) => ({
-    loading: true,
-    branches: [],
-  })),
+  on(logout, () => initialState),
   on(addBranch, (state, action) => ({
     ...state,
     branches: [...state.branches, action.branch],

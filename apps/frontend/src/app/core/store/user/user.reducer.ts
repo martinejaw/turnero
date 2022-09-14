@@ -6,6 +6,7 @@ export type UserState = { loading: boolean; user?: User };
 
 export const initialState: UserState = {
   loading: true,
+  user: undefined,
 };
 
 export const userReducer = createReducer(
@@ -15,8 +16,5 @@ export const userReducer = createReducer(
     loading: false,
     user: action.user,
   })),
-  on(logout, (state, action) => ({
-    loading: true,
-    user: undefined,
-  }))
+  on(logout, () => initialState)
 );

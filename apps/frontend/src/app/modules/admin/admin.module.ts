@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from '../material.module';
 import { Paths } from 'src/config/paths';
 import { SucursalesComponent } from './sucursales/sucursales.component';
-import { AuthGuard } from '../core/auth/guards/auth.guard';
-import { MenuCardComponent } from '../shared/menu-card/menu-card.component';
+import { AuthGuard } from 'src/app/core/auth/guards/auth.guard';
+import { MenuCardComponent } from 'src/app/shared/menu-card/menu-card.component';
+import { MaterialModule } from 'src/app/material.module';
 
 const routes: Routes = [
   //TODO Cambiar Componentes

@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import Initializers from './app.initializers';
 import { LoginComponent } from './core/auth/components/login/login.component';
@@ -15,6 +14,7 @@ import { SignupComponent } from './core/auth/components/signup/signup.component'
 import { rootState } from './core/store';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ContainerComponent } from './shared/container/navbar.component';
+import { AdminModule } from './modules/admin/admin.module';
 
 @NgModule({
   declarations: [

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
+import { AppState, selectBranchesCount } from 'src/app/core/store';
 import { AdminPaths, Paths } from 'src/config/paths';
-import { AppState, selectBranchesCount } from '../core/store';
 
 interface MenuItem {
   title: string;

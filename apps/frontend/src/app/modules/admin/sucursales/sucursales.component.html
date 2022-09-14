@@ -2,6 +2,7 @@
   mat-raised-button
   color="primary"
   aria-label="Example icon button with a home icon"
+  (click)="openDialog()"
 >
   Agregar sucursal
   <mat-icon>add</mat-icon>
@@ -11,37 +12,15 @@
   mat-raised-button
   color="primary"
   aria-label="Example icon button with a home icon"
-  (click)="volver()"
+  (click)="goBack()"
 >
   <mat-icon>keyboard_arrow_left</mat-icon>
   Volver
 </button>
 
-<mat-card>
-  <mat-card-title>Agregar sucursal</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <p>
-        <mat-form-field>
-          <input
-            type="text"
-            matInput
-            placeholder="Address"
-            formControlName="address"
-          />
-        </mat-form-field>
-      </p>
-
-      <div class="button">
-        <button type="submit" mat-button>Agregar sucursal</button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
-
 <div>
   <mat-nav-list>
-    <mat-list-item *ngFor="let branch of branchesSlice$ | async">
+    <mat-list-item *ngFor="let branch of branches$ | async">
       <p>
         Id:
         {{ branch.id }}

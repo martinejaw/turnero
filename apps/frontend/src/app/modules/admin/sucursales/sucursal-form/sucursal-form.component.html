@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1 mat-dialog-title>Agregar sucursal</h1>
+  <div mat-dialog-content>
+    <p>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Address"
+          formControlName="address"
+        />
+      </mat-form-field>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button (click)="onCloseClick()" mat-raised-button color="error">
+      Cancelar
+    </button>
+    <button type="submit" mat-raised-button color="primary">
+      Agregar sucursal
+    </button>
+  </div>
+</form>

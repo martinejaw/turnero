@@ -15,6 +15,7 @@ import { rootState } from './core/store';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { ContainerComponent } from './shared/container/navbar.component';
 import { AdminModule } from './modules/admin/admin.module';
+import { HomeModule } from './modules/home/home.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AdminModule } from './modules/admin/admin.module';
   ],
   imports: [
     AdminModule,
+    HomeModule,
     BrowserModule,
     AppRoutingModule,
     MaterialModule,

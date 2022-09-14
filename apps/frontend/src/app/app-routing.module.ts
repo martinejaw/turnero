@@ -6,7 +6,6 @@ import { SignupComponent } from './core/auth/components/signup/signup.component'
 import { AuthGuard } from './core/auth/guards/auth.guard';
 
 const routes: Routes = [
-  { path: Paths.HOME, component: LoginComponent },
   { path: Paths.LOGIN, component: LoginComponent },
   { path: Paths.SIGNUP, component: SignupComponent },
   { path: '**', component: LoginComponent },

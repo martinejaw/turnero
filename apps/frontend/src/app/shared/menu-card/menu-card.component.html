@@ -1,10 +1,7 @@
-<mat-card class="example-card" (click)="redirect()">
-  <mat-card-title-group>
-    <mat-card-title>{{ title }}</mat-card-title>
-    <mat-card-subtitle>Extra large</mat-card-subtitle>
-    <mat-icon class="size-24">{{ source }}</mat-icon>
-  </mat-card-title-group>
-  <mat-card-content>
-    {{ content }}
+<mat-card class="menu-card" (click)="redirect()">
+  <mat-card-title class="menu-card__title">{{ title }}</mat-card-title>
+  <mat-card-content class="menu-card__content">
+    <mat-icon class="icon">{{ source }}</mat-icon>
+    <!-- {{ content }} -->
   </mat-card-content>
 </mat-card>

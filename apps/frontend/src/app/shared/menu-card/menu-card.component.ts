@@ -17,7 +17,6 @@ export class MenuCardComponent implements OnInit {
   ngOnInit(): void {}
 
   redirect(): void {
-    console.log(this.path);
     this.router.navigate([this.path]);
   }
 }

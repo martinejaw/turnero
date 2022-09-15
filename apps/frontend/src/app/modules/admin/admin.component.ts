@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { AppState, selectBranchesCount } from 'src/app/core/store';
+import { AppState, selectBranchesCount, selectUser } from 'src/app/core/store';
 import { AdminPaths, Paths } from 'src/config/paths';
 
 interface MenuItem {
@@ -16,8 +16,7 @@ interface MenuItem {
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  userSlice$ = this.store.select('userSlice');
-  businessSlice$ = this.store.select('businessSlice');
+  user$ = this.store.pipe(select(selectUser));
   branchesCount$ = this.store.pipe(select(selectBranchesCount));
 
   menuItems: MenuItem[] = [

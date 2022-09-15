@@ -1,0 +1,11 @@
+<div class="deleteDialog">
+  <h1 mat-dialog-title>Esta seguro que desea eliminar esta sucursal?</h1>
+  <div mat-dialog-actions>
+    <button (click)="onCloseClick()" mat-raised-button color="error">
+      Cancelar
+    </button>
+    <button (click)="eliminarSucursal()" mat-raised-button color="primary">
+      Eliminar sucursal
+    </button>
+  </div>
+</div>

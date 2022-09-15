@@ -18,7 +18,7 @@ import { LocalStrategy } from './local.strategy';
     BranchesModule,
     JwtModule.register({
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '2d' },
     }),
   ],
   providers: [AuthService, JwtStrategy, LocalStrategy],

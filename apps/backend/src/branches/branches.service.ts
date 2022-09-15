@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
+import { EditBranchDto } from './dto/edit-branch.dto';
 
 @Injectable()
 export class BranchesService {
@@ -30,6 +31,19 @@ export class BranchesService {
       return this.prisma.branch.delete({ where: { id } });
     } catch {
       console.log('Error en el borrado de sucursal.');
+    }
+  }
+
+  editOneBy(editBranchDto: EditBranchDto) {
+    try {
+      let { id, address } = editBranchDto;
+
+      return this.prisma.branch.update({
+        where: { id },
+        data: { address },
+      });
+    } catch {
+      console.log('Error al editar sucursal.');
     }
   }
 }

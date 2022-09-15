@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SucursalService } from '../sucursales.service';
 import { MatDialogRef } from '@angular/material/dialog';
+import { SucursalService } from '../../sucursales.service';
 
 @Component({
-  selector: 'app-sucursal-form',
-  templateUrl: './sucursal-form.component.html',
-  styleUrls: ['./sucursal-form.component.scss'],
+  selector: 'app-create-branch',
+  templateUrl: './create-branch.component.html',
+  styleUrls: ['./create-branch.component.scss'],
 })
-export class SucursalFormComponent implements OnInit {
+export class CreateBranchComponent implements OnInit {
   constructor(
     private sucursalService: SucursalService,
-    public dialogRef: MatDialogRef<SucursalFormComponent>
+    public dialogRef: MatDialogRef<CreateBranchComponent>
   ) {}
 
   ngOnInit(): void {}

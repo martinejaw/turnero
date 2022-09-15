@@ -1,12 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from 'src/app/material.module';
-import { SucursalFormComponent } from './sucursal-form/sucursal-form.component';
+import { CreateBranchComponent } from './dialogs/create-branch/create-branch.component';
+import { DeleteBranchComponent } from './dialogs/delete-branch/delete-branch.component';
+import { EditBranchComponent } from './dialogs/edit-branch/edit-branch.component';
 import { SucursalesComponent } from './sucursales.component';
 
 @NgModule({
-  declarations: [SucursalFormComponent, SucursalesComponent],
+  declarations: [
+    CreateBranchComponent,
+    SucursalesComponent,
+    DeleteBranchComponent,
+    EditBranchComponent,
+  ],
   imports: [CommonModule, MaterialModule],
-  exports: [SucursalFormComponent, SucursalesComponent],
+  exports: [
+    CreateBranchComponent,
+    SucursalesComponent,
+    DeleteBranchComponent,
+    EditBranchComponent,
+  ],
 })
 export class SucursalesModule {}

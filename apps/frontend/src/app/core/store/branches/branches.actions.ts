@@ -10,3 +10,8 @@ export const deleteBranch = createAction(
   '[Branch] Delete branch',
   props<{ id: number }>()
 );
+
+export const editBranch = createAction(
+  '[Branch] Edit branch',
+  props<{ branch: Branch }>()
+);

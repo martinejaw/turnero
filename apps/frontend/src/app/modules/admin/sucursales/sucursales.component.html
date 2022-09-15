@@ -28,8 +28,12 @@
         {{ branch.address }}
       </p>
 
-      <button mat-list-item (click)="delete(branch.id)">
+      <button mat-list-item (click)="openDeleteDialog(branch.id)">
         <mat-icon>delete</mat-icon>
+      </button>
+
+      <button mat-list-item (click)="openEditDialog(branch.id, branch.address)">
+        <mat-icon>edit</mat-icon>
       </button>
     </mat-list-item>
   </mat-nav-list>

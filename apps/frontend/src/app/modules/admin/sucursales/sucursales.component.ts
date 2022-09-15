@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppState, selectBranches } from 'src/app/core/store';
-import { SucursalService } from './sucursales.service';
 import { MatDialog } from '@angular/material/dialog';
-import { SucursalFormComponent } from './sucursal-form/sucursal-form.component';
+import { CreateBranchComponent } from './dialogs/create-branch/create-branch.component';
+import { DeleteBranchComponent } from './dialogs/delete-branch/delete-branch.component';
+import { EditBranchComponent } from './dialogs/edit-branch/edit-branch.component';
 
 @Component({
   selector: 'app-sucursales',
@@ -15,7 +16,6 @@ export class SucursalesComponent implements OnInit {
   branches$ = this.store.pipe(select(selectBranches));
 
   constructor(
-    private sucursalService: SucursalService,
     private store: Store<AppState>,
     private router: Router,
     public dialog: MatDialog
@@ -27,13 +27,21 @@ export class SucursalesComponent implements OnInit {
     this.router.navigate(['/admin']);
   }
 
-  delete(id: number) {
-    this.sucursalService.deleteBranch(id);
+  openDialog() {
+    this.dialog.open(CreateBranchComponent, {
+      width: '300px',
+    });
   }
 
-  openDialog() {
-    this.dialog.open(SucursalFormComponent, {
-      width: '300px',
+  openDeleteDialog(id: number) {
+    this.dialog.open(DeleteBranchComponent, {
+      data: { id },
+    });
+  }
+
+  openEditDialog(id: number, address: string) {
+    this.dialog.open(EditBranchComponent, {
+      data: { id, address },
     });
   }
 }

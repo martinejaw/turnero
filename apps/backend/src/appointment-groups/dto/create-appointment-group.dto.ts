@@ -1,4 +1,6 @@
 export class CreateAppointmentGroupDto {
+  name: string;
+  description?: string;
   public?: boolean;
-  branchId: number;
+  sectionId: number;
 }

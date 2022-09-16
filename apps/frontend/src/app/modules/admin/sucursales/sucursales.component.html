@@ -1,40 +1,48 @@
-<button
-  mat-raised-button
-  color="primary"
-  aria-label="Example icon button with a home icon"
-  (click)="openDialog()"
->
-  Agregar sucursal
-  <mat-icon>add</mat-icon>
-</button>
-
-<button
-  mat-raised-button
-  color="primary"
-  aria-label="Example icon button with a home icon"
-  (click)="goBack()"
->
-  <mat-icon>keyboard_arrow_left</mat-icon>
-  Volver
-</button>
-
-<div>
-  <mat-nav-list>
-    <mat-list-item *ngFor="let branch of branches$ | async">
-      <p>
-        Id:
-        {{ branch.id }}
-        - Address:
-        {{ branch.address }}
-      </p>
-
-      <button mat-list-item (click)="openDeleteDialog(branch.id)">
-        <mat-icon>delete</mat-icon>
+<div class="page-container">
+  <div class="list-container">
+    <div class="header-buttons">
+      <button
+        mat-raised-button
+        color="primary"
+        aria-label="Example icon button with a home icon"
+        (click)="goBack()"
+      >
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        Volver
       </button>
-
-      <button mat-list-item (click)="openEditDialog(branch.id, branch.address)">
-        <mat-icon>edit</mat-icon>
+      <button
+        mat-raised-button
+        color="primary"
+        aria-label="Example icon button with a home icon"
+        (click)="openDialog()"
+      >
+        Agregar sucursal
+        <mat-icon>add</mat-icon>
       </button>
-    </mat-list-item>
-  </mat-nav-list>
+    </div>
+
+    <mat-nav-list>
+      <mat-list-item class="list-item" *ngFor="let branch of branches$ | async">
+        <p matLine>
+          Id:
+          {{ branch.id }}
+          - Address:
+          {{ branch.address }}
+        </p>
+
+        <mat-action-list>
+          <button mat-icon-button (click)="openDeleteDialog(branch.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <button
+            mat-icon-button
+            (click)="openEditDialog(branch.id, branch.address)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </mat-action-list>
+      </mat-list-item>
+    </mat-nav-list>
+  </div>
 </div>

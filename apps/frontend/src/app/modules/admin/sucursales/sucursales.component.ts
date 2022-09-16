@@ -28,9 +28,7 @@ export class SucursalesComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(CreateBranchComponent, {
-      width: '300px',
-    });
+    this.dialog.open(CreateBranchComponent);
   }
 
   openDeleteDialog(id: number) {

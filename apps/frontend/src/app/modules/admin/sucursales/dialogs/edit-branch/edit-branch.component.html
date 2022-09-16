@@ -13,7 +13,12 @@
     </p>
   </div>
   <div mat-dialog-actions>
-    <button (click)="onCloseClick()" mat-raised-button color="error">
+    <button
+      type="reset"
+      (click)="onCloseClick()"
+      mat-raised-button
+      color="error"
+    >
       Cancelar
     </button>
     <button type="submit" mat-raised-button color="primary">Aceptar</button>

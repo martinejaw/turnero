@@ -28,6 +28,7 @@ model Business {
   branches Branch[]
 }
 
+// Ej: Edificio ubicado en Av. General Belgrano 1992
 model Branch {
   id      Int    @id @default(autoincrement())
   address String
@@ -35,19 +36,35 @@ model Branch {
   business   Business @relation(fields: [businessId], references: [id])
   businessId Int
 
-  appointmentGroups AppointmentGroup[]
+  sections Section[]
 }
 
-model AppointmentGroup {
-  id     Int     @id @default(autoincrement())
-  public Boolean @default(true)
+// Ej: Seccion de Cardiologia, Radiografia, etc
+model Section {
+  id          Int @id @default(autoincrement())
+  name        String
+  description String @default("")
 
   branch   Branch @relation(fields: [branchId], references: [id])
   branchId Int
 
+  appointmentGroups AppointmentGroup[]
+}
+
+// Ej: Sala 1 de Cardiologia, Dr. Marcelo, Dr. Bremman, Peluquero Juan, etc
+model AppointmentGroup {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String @default("")
+  public      Boolean @default(true)
+
+  section   Section @relation(fields: [sectionId], references: [id])
+  sectionId Int
+
   procedureTypes ProcedureType[]
 }
 
+// Ej: Consulta, Operacion clinica X, lavado de cabeza
 model ProcedureType {
   id       Int    @id @default(autoincrement())
   name     String

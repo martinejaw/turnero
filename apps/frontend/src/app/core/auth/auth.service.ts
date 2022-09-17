@@ -33,6 +33,7 @@ export class AuthService {
         user: resp.user,
         business: resp.business,
         branches: resp.branches,
+        sections: resp.sections,
       })
     );
     this.setAccessToken(resp.accessToken);
@@ -52,6 +53,7 @@ export class AuthService {
         user: resp.user,
         business: resp.business,
         branches: resp.branches,
+        sections: resp.sections,
       })
     );
     this.setAccessToken(resp.accessToken);
@@ -90,6 +92,7 @@ export class AuthService {
           user: resp.user,
           business: resp.business,
           branches: resp.branches,
+          sections: resp.sections,
         })
       );
       this.setAccessToken(accessToken);

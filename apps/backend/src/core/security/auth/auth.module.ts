@@ -3,6 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { BranchesModule } from 'src/branches/branches.module';
 import { BusinessModule } from 'src/business/business.module';
+import { SectionsModule } from 'src/sections/sections.module';
 import { UsersModule } from 'src/users/users.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
@@ -16,6 +17,7 @@ import { LocalStrategy } from './local.strategy';
     PassportModule,
     BusinessModule,
     BranchesModule,
+    SectionsModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '2d' },

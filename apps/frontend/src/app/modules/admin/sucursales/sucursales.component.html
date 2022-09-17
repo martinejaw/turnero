@@ -23,7 +23,7 @@
 
     <mat-nav-list>
       <mat-list-item class="list-item" *ngFor="let branch of branches$ | async">
-        <p matLine>
+        <p matLine (click)="onClickBranch(branch.id)">
           Id:
           {{ branch.id }}
           - Address:

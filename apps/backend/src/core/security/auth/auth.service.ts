@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
+import { Section, User } from '@prisma/client';
 import { BranchesService } from 'src/branches/branches.service';
 import { BusinessService } from 'src/business/business.service';
+import { SectionsService } from 'src/sections/sections.service';
 import { UsersService } from 'src/users/users.service';
 import { SecurityService } from '../security.service';
 import { AuthUserDto } from './dto/auth-user.dto';
@@ -14,6 +15,7 @@ export class AuthService {
     private usersService: UsersService,
     private businessService: BusinessService,
     private branchesService: BranchesService,
+    private sectionsService: SectionsService,
     private jwtTokenService: JwtService,
     private securityService: SecurityService,
   ) {}
@@ -40,10 +42,15 @@ export class AuthService {
       businessId: business.id,
     });
 
+    let sections = await this.sectionsService.findBy({
+      branchId: { in: [...branches.map((branch) => branch.id)] },
+    });
+
     return {
       user: userDto,
       business,
       branches,
+      sections,
       accessToken: this.jwtTokenService.sign(payload),
     };
   }

@@ -6,7 +6,6 @@ import { SucursalService } from '../../sucursales.service';
 @Component({
   selector: 'app-create-branch',
   templateUrl: './create-branch.component.html',
-  styleUrls: ['./create-branch.component.scss'],
 })
 export class CreateBranchComponent implements OnInit {
   constructor(
@@ -20,16 +19,14 @@ export class CreateBranchComponent implements OnInit {
     address: new FormControl('', Validators.required),
   });
 
-  async submit() {
+  onAccept = () => {
     if (this.form.valid) {
       const { address } = this.form.value;
       this.sucursalService.createBranch(address);
-      this.form.reset();
-      this.onCloseClick();
     }
-  }
+  };
 
-  onCloseClick(): void {
-    this.dialogRef.close();
-  }
+  onClose = () => {
+    this.form.reset();
+  };
 }

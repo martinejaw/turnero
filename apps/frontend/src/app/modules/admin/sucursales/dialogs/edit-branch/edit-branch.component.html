@@ -1,6 +1,10 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <h1 mat-dialog-title>Editar sucursal</h1>
-  <div mat-dialog-content>
+<app-simple-dialog
+  title="Editar sucursal"
+  [onClose]="onClose"
+  [onAccept]="onAccept"
+  [dialogRef]="dialogRef"
+>
+  <form [formGroup]="form">
     <p>
       <mat-form-field>
         <input
@@ -11,16 +15,5 @@
         />
       </mat-form-field>
     </p>
-  </div>
-  <div mat-dialog-actions>
-    <button
-      type="reset"
-      (click)="onCloseClick()"
-      mat-raised-button
-      color="error"
-    >
-      Cancelar
-    </button>
-    <button type="submit" mat-raised-button color="primary">Aceptar</button>
-  </div>
-</form>
+  </form>
+</app-simple-dialog>

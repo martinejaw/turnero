@@ -3,14 +3,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SucursalService } from '../../sucursales.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+interface FormInput {
+  id: number;
+  address: string;
+}
+
 @Component({
   selector: 'app-edit-branch',
   templateUrl: './edit-branch.component.html',
-  styleUrls: ['./edit-branch.component.scss'],
 })
 export class EditBranchComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: FormInput,
     private sucursalService: SucursalService,
     public dialogRef: MatDialogRef<EditBranchComponent>
   ) {}
@@ -21,16 +25,14 @@ export class EditBranchComponent implements OnInit {
     address: new FormControl(this.data.address, Validators.required),
   });
 
-  async submit() {
+  onAccept = () => {
     if (this.form.valid) {
       const { address } = this.form.value;
       this.sucursalService.editBranch(this.data.id, address);
-      this.form.reset();
-      this.onCloseClick();
     }
-  }
+  };
 
-  onCloseClick(): void {
-    this.dialogRef.close();
-  }
+  onClose = () => {
+    this.form.reset();
+  };
 }

@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Section, User } from '@prisma/client';
+import { User } from '@prisma/client';
 import { BranchesService } from 'src/branches/branches.service';
 import { BusinessService } from 'src/business/business.service';
 import { SectionsService } from 'src/sections/sections.service';
 import { UsersService } from 'src/users/users.service';
 import { SecurityService } from '../security.service';
 import { AuthUserDto } from './dto/auth-user.dto';
-import { SessionDataDto } from './dto/session-data.dto';
+import { SessionData, SessionDto } from './dto/session-data.dto';
 
 @Injectable()
 export class AuthService {
@@ -33,43 +33,40 @@ export class AuthService {
     return null;
   }
 
-  async loginWithCredentials(user: User) {
+  async login(user: User): Promise<SessionDto> {
     const payload = { email: user.email, sub: user.id };
-    const { password, ...userDto } = user;
-
-    const business = await this.businessService.findUnique({ userId: user.id });
-    const branches = await this.branchesService.findBy({
-      businessId: business.id,
-    });
-
-    let sections = await this.sectionsService.findBy({
-      branchId: { in: [...branches.map((branch) => branch.id)] },
-    });
 
     return {
-      user: userDto,
-      business,
-      branches,
-      sections,
       accessToken: this.jwtTokenService.sign(payload),
+      data: await this.getUserState(payload.sub),
     };
   }
 
-  async retrieveState(accessToken: string): Promise<SessionDataDto> {
+  async retrieveState(
+    accessToken: string,
+  ): Promise<Omit<SessionDto, 'accessToken'>> {
     this.jwtTokenService.verify(accessToken);
     const payload = this.jwtTokenService.decode(accessToken);
-    const { sub: userId } = payload;
+    return { data: await this.getUserState(payload.sub) };
+  }
 
-    const user = await this.usersService.findOne({ id: userId });
+  async getUserState(userId: number): Promise<SessionData> {
+    const { password, ...user } = await this.usersService.findOne({
+      id: userId,
+    });
     const business = await this.businessService.findUnique({ userId: user.id });
     const branches = await this.branchesService.findBy({
       businessId: business.id,
+    });
+    const sections = await this.sectionsService.findBy({
+      branchId: { in: branches.map((branch) => branch.id) },
     });
 
     return {
       user,
       business,
       branches,
+      sections,
     };
   }
 }

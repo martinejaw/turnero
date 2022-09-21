@@ -1,13 +1,16 @@
-import { Branch } from '../../store/branches/branches.type';
-import { Section } from '../../store/sections/sections.type';
-import { User } from '../../store/user/user.type';
+import { Branch } from 'src/app/core/store/admin/branches/branches.type';
+import { Section } from 'src/app/core/store/admin/sections/sections.type';
+import { User } from 'src/app/core/store/admin/user/user.type';
 
-export interface LoginResponse {
+export interface SessionData {
   user: User;
   business: Business;
   branches: Branch[];
   sections: Section[];
+}
+export interface LoginResponse {
   accessToken: string;
+  data: SessionData;
 }
 
 interface Business {
@@ -15,10 +18,4 @@ interface Business {
   name: string;
 }
 
-export interface SignUpResponse {
-  user: User;
-  accessToken: string;
-  business: Business;
-  branches: Branch[];
-  sections: Section[];
-}
+export type SignUpResponse = LoginResponse;

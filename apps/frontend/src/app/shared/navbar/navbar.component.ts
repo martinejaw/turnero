@@ -1,8 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { AppState } from 'src/app/core/store';
+import { AppState, selectBusiness, selectUser } from 'src/app/core/store';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +10,8 @@ import { AppState } from 'src/app/core/store';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  userSlice$ = this.store.select('userSlice');
-  businessSlice$ = this.store.select('businessSlice');
+  user$ = this.store.pipe(select(selectUser));
+  business$ = this.store.pipe(select(selectBusiness));
 
   mobileQuery: MediaQueryList;
 

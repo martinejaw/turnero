@@ -14,7 +14,7 @@ import { BusinessService } from 'src/business/business.service';
 import { UsersService } from 'src/users/users.service';
 import { AuthService } from './auth.service';
 import { SignUpDto } from './dto/auth-user.dto';
-import { SessionDataDto } from './dto/session-data.dto';
+import { SessionDto } from './dto/session-data.dto';
 import { LocalAuthGuard } from './local-auth.guard';
 
 @Controller('auth')
@@ -28,27 +28,24 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
-    return this.authService.loginWithCredentials(req.user);
+    return this.authService.login(req.user);
   }
 
   @Post('signup')
   async signup(@Body() signUpDto: SignUpDto) {
     const user = await this.userService.create(signUpDto);
-    const business = await this.businessService.create({
+    await this.businessService.create({
       name: signUpDto.businessName,
       userId: user.id,
     });
-    const response = {
-      business,
-      ...(await this.authService.loginWithCredentials(user)),
-    };
-    return response;
+
+    return this.authService.login(user);
   }
 
   @Get('retrieve-state')
   async retrieveState(
     @Query('accessToken') accessToken: string,
-  ): Promise<SessionDataDto> {
+  ): Promise<Omit<SessionDto, 'accessToken'>> {
     try {
       return await this.authService.retrieveState(accessToken);
     } catch {

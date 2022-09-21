@@ -11,9 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateBranchComponent } from './dialogs/create-branch/create-branch.component';
 import { DeleteBranchComponent } from './dialogs/delete-branch/delete-branch.component';
 import { EditBranchComponent } from './dialogs/edit-branch/edit-branch.component';
-import { SectionsState } from 'src/app/core/store/sections/sections.reducer';
+import { Section } from 'src/app/core/store/admin/sections/sections.type';
 import { Observable } from 'rxjs';
-import { Section } from 'src/app/core/store/sections/sections.type';
 
 @Component({
   selector: 'app-sucursales',

@@ -1,9 +1,7 @@
-import { Store } from '@ngrx/store';
-import { take } from 'rxjs';
-import { AppState } from '.';
+import { Observable, take } from 'rxjs';
 
-export const getState = (store: Store<AppState>): AppState => {
-  let state: AppState | undefined;
-  store.pipe(take(1)).subscribe((s) => (state = s));
-  return state as AppState;
-};
+export function getState<T>(store$: Observable<any>): T {
+  let state: T | undefined;
+  store$.pipe(take(1)).subscribe((s: any) => (state = s));
+  return state as T;
+}

@@ -20,7 +20,8 @@
     "target": "es2020",
     "module": "es2020",
     "paths": {
-      "./src/app/*": ["@app/*"]
+      "./src/app/*": ["@app/*"],
+      "./src/app/core/store/*": ["@store/*"]
     },
     "lib": ["es2020", "dom"]
   },

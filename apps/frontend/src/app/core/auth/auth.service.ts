@@ -1,18 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { lastValueFrom, take } from 'rxjs';
 import { ApiPaths } from 'src/config/apiPaths';
-import { AppState } from '../store';
-import { login, logout } from '../store/user/user.actions';
+import { AppState, selectUser } from '../store';
+import { login, logout } from '../store/admin/user/user.actions';
+import { User } from '../store/admin/user/user.type';
+import { getState } from '../store/utils';
 import { LoginResponse, SignUpResponse } from './types/LoginResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  userSlice$ = this.store.select('userSlice');
+  user$ = this.store.pipe(select(selectUser));
   accessToken?: string;
 
   constructor(
@@ -28,14 +30,7 @@ export class AuthService {
         password,
       })
     );
-    this.store.dispatch(
-      login({
-        user: resp.user,
-        business: resp.business,
-        branches: resp.branches,
-        sections: resp.sections,
-      })
-    );
+    this.store.dispatch(login(resp.data));
     this.setAccessToken(resp.accessToken);
     this.router.navigate(['/admin']);
   }
@@ -48,14 +43,7 @@ export class AuthService {
         businessName,
       })
     );
-    this.store.dispatch(
-      login({
-        user: resp.user,
-        business: resp.business,
-        branches: resp.branches,
-        sections: resp.sections,
-      })
-    );
+    this.store.dispatch(login(resp.data));
     this.setAccessToken(resp.accessToken);
     this.router.navigate(['/admin']);
   }
@@ -72,9 +60,7 @@ export class AuthService {
 
   isAuthenticated() {
     let user;
-    this.userSlice$
-      .pipe(take(1))
-      .subscribe((userState) => (user = userState.user));
+    user = getState<User>(this.user$);
     return user ? true : false;
   }
 
@@ -87,14 +73,7 @@ export class AuthService {
           params: { accessToken },
         })
       );
-      this.store.dispatch(
-        login({
-          user: resp.user,
-          business: resp.business,
-          branches: resp.branches,
-          sections: resp.sections,
-        })
-      );
+      this.store.dispatch(login(resp.data));
       this.setAccessToken(accessToken);
       this.router.navigate(['/admin']);
     } catch {

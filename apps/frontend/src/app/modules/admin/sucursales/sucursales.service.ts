@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { lastValueFrom } from 'rxjs';
-import { AppState } from 'src/app/core/store';
+import { AppState, selectBusiness } from 'src/app/core/store';
 import {
   addBranch,
   deleteBranch,
   editBranch,
-} from 'src/app/core/store/branches/branches.actions';
+} from 'src/app/core/store/admin/branches/branches.actions';
+import { Business } from 'src/app/core/store/admin/business/business.type';
+
 import { getState } from 'src/app/core/store/utils';
 import { ApiPaths } from 'src/config/apiPaths';
 import { BranchResponse } from '../dtoTypes';
@@ -16,15 +18,17 @@ import { BranchResponse } from '../dtoTypes';
   providedIn: 'root',
 })
 export class SucursalService {
+  business$ = this.store.pipe(select(selectBusiness));
+
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   async createBranch(address: string) {
     try {
-      const appState = getState(this.store);
+      const lastBusiness = getState<Business>(this.business$);
       const resp = await lastValueFrom(
         this.http.post<BranchResponse>(ApiPaths.branches, {
           address: address,
-          businessId: appState.businessSlice.business?.id,
+          businessId: lastBusiness?.id,
         })
       );
 

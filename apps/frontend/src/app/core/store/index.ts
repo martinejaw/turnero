@@ -1,51 +1,40 @@
 import { createSelector } from '@ngrx/store';
-import { branchesReducer, BranchesState } from './branches/branches.reducer';
-import { businessReducer, BusinessState } from './business/business.reducer';
-import { sectionsReducer, SectionsState } from './sections/sections.reducer';
-import { userReducer, UserState } from './user/user.reducer';
+import { adminReducer, AdminState } from './admin/admin.reducer';
+import { Branch } from './admin/branches/branches.type';
 
 export interface AppState {
-  userSlice: UserState;
-  businessSlice: BusinessState;
-  branchesSlice: BranchesState;
-  sectionsSlice: SectionsState;
+  adminSlice: AdminState;
 }
 
 export const rootState = {
-  userSlice: userReducer,
-  businessSlice: businessReducer,
-  branchesSlice: branchesReducer,
-  sectionsSlice: sectionsReducer,
+  adminSlice: adminReducer,
 };
 
-export const selectUserSlice = (state: AppState) => state.userSlice;
-export const selectBusinessSlice = (state: AppState) => state.businessSlice;
-export const selectBranchesSlice = (state: AppState) => state.branchesSlice;
-export const selectSectionsSlice = (state: AppState) => state.sectionsSlice;
+export const selectAdminSlice = (state: AppState) => state.adminSlice;
 
 export const selectUser = createSelector(
-  selectUserSlice,
-  (state: UserState) => state.user
+  selectAdminSlice,
+  (state: AdminState) => state.user
 );
 export const selectBusiness = createSelector(
-  selectBusinessSlice,
-  (state: BusinessState) => state.business
+  selectAdminSlice,
+  (state: AdminState) => state.business
 );
 export const selectBranches = createSelector(
-  selectBranchesSlice,
-  (state: BranchesState) => state.branches
+  selectAdminSlice,
+  (state: AdminState) => state.branches
 );
 export const selectSections = createSelector(
-  selectSectionsSlice,
-  (state: SectionsState) => state.sections
+  selectAdminSlice,
+  (state: AdminState) => state.sections
 );
+
+// Branches
 export const selectSectionsByBranches = (id: number) =>
-  createSelector(selectSectionsSlice, (state) =>
-    state.sections
-      ? state.sections.filter((section) => section.branchId === id)
-      : null
+  createSelector(selectSections, (sections) =>
+    sections ? sections.filter((section) => section.branchId === id) : null
   );
 export const selectBranchesCount = createSelector(
-  selectBranchesSlice,
-  (state: BranchesState) => (state.branches ? state.branches.length : 0)
+  selectBranches,
+  (branches: Branch[]) => (branches ? branches.length : 0)
 );

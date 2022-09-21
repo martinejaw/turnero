@@ -1,19 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import {
-  AppState,
-  selectBranches,
-  selectSections,
-  selectSectionsByBranches,
-} from 'src/app/core/store';
-import { MatDialog } from '@angular/material/dialog';
+import { AppState, selectBranches, selectSections } from 'src/app/core/store';
 import { CreateBranchComponent } from './dialogs/create-branch/create-branch.component';
+
 import { DeleteBranchComponent } from './dialogs/delete-branch/delete-branch.component';
 import { EditBranchComponent } from './dialogs/edit-branch/edit-branch.component';
-import { SectionsState } from 'src/app/core/store/sections/sections.reducer';
-import { Observable } from 'rxjs';
-import { Section } from 'src/app/core/store/sections/sections.type';
 
 @Component({
   selector: 'app-sucursales',
@@ -23,7 +16,6 @@ import { Section } from 'src/app/core/store/sections/sections.type';
 export class SucursalesComponent implements OnInit {
   branches$ = this.store.pipe(select(selectBranches));
   sections$ = this.store.pipe(select(selectSections));
-  sectionsByBranch$: Observable<Section[] | null>;
 
   constructor(
     private store: Store<AppState>,
@@ -39,16 +31,6 @@ export class SucursalesComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(CreateBranchComponent);
-  }
-
-  async onClickBranch(id: number) {
-    this.sectionsByBranch$ = this.store.pipe(
-      select(selectSectionsByBranches(id))
-    );
-
-    console.log(this.sectionsByBranch$);
-
-    //TODO SEGUIMOS LUEGO
   }
 
   openDeleteDialog(id: number) {

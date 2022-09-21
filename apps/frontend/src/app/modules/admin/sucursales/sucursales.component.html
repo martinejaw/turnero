@@ -21,28 +21,8 @@
       </button>
     </div>
 
-    <mat-nav-list>
-      <mat-list-item class="list-item" *ngFor="let branch of branches$ | async">
-        <p matLine (click)="onClickBranch(branch.id)">
-          Id:
-          {{ branch.id }}
-          - Address:
-          {{ branch.address }}
-        </p>
-
-        <mat-action-list>
-          <button mat-icon-button (click)="openDeleteDialog(branch.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-
-          <button
-            mat-icon-button
-            (click)="openEditDialog(branch.id, branch.address)"
-          >
-            <mat-icon>edit</mat-icon>
-          </button>
-        </mat-action-list>
-      </mat-list-item>
-    </mat-nav-list>
+    <div class="list-item" *ngFor="let branch of branches$ | async">
+      <app-branch-item [branch]="branch"></app-branch-item>
+    </div>
   </div>
 </div>

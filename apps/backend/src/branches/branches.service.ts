@@ -28,7 +28,12 @@ export class BranchesService {
 
   deleteBy(id: number) {
     try {
-      return this.prisma.branch.delete({ where: { id } });
+      let sectionsDeletedByBranch = this.prisma.section.deleteMany({
+        where: { branchId: id },
+      });
+      let branchDeleted = this.prisma.branch.delete({ where: { id } });
+
+      return this.prisma.$transaction([sectionsDeletedByBranch, branchDeleted]);
     } catch {
       console.log('Error en el borrado de sucursal.');
     }

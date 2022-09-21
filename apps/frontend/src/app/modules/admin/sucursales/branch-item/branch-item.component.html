@@ -1,0 +1,45 @@
+<!-- <p matLine>
+  
+</p>
+
+<div >
+  <p>
+    
+  </p>
+</div>
+
+<mat-action-list>
+  
+</mat-action-list> -->
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Id:
+      {{ branch.id }}
+      - Address:
+      {{ branch.address }}
+    </mat-panel-title>
+    <mat-panel-description class="expansion-description">
+      <button mat-icon-button (click)="openDeleteDialog(branch.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button
+        mat-icon-button
+        (click)="openEditDialog(branch.id, branch.address)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <div *ngIf="haveSections">
+    <p *ngFor="let section of sectionsByBranch$ | async">
+      {{ section.name }}
+    </p>
+  </div>
+  <div *ngIf="haveSections">
+    <p>No hay secciones para esta sucursal.</p>
+  </div>
+</mat-expansion-panel>

@@ -43,7 +43,7 @@ export const selectSectionsByBranches = (id: number) =>
   createSelector(selectSectionsSlice, (state) =>
     state.sections
       ? state.sections.filter((section) => section.branchId === id)
-      : null
+      : []
   );
 export const selectBranchesCount = createSelector(
   selectBranchesSlice,

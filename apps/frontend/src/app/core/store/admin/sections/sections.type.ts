@@ -4,3 +4,9 @@ export type Section = {
   description: string;
   branchId: number;
 };
+
+export type NewSection = {
+  name: string;
+  description: string;
+  branchId: number;
+};

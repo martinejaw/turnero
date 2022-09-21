@@ -6,9 +6,12 @@ import { AppState, selectBranches } from 'src/app/core/store';
 import { Branch } from 'src/app/core/store/admin/branches/branches.type';
 import { Business } from 'src/app/core/store/admin/business/business.type';
 import { addSection } from 'src/app/core/store/admin/sections/sections.actions';
+import {
+  NewSection,
+  Section,
+} from 'src/app/core/store/admin/sections/sections.type';
 import { getState } from 'src/app/core/store/utils';
 import { ApiPaths } from 'src/config/apiPaths';
-import { SectionResponse } from '../dtoTypes';
 
 @Injectable({
   providedIn: 'root',
@@ -18,14 +21,10 @@ export class SectionsService {
 
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
-  async createSection(name: string, description: string, branchId: number) {
+  async createSection(section: NewSection) {
     try {
       const resp = await lastValueFrom(
-        this.http.post<SectionResponse>(ApiPaths.sections, {
-          name: name,
-          description: description,
-          branchId: branchId,
-        })
+        this.http.post<Section>(ApiPaths.sections, section)
       );
 
       this.store.dispatch(addSection({ section: resp }));

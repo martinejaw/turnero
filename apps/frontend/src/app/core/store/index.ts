@@ -1,6 +1,5 @@
 import { createSelector } from '@ngrx/store';
 import { adminReducer, AdminState } from './admin/admin.reducer';
-import { Branch } from './admin/branches/branches.type';
 
 export interface AppState {
   adminSlice: AdminState;
@@ -27,14 +26,4 @@ export const selectBranches = createSelector(
 export const selectSections = createSelector(
   selectAdminSlice,
   (state: AdminState) => state.sections
-);
-
-// Branches
-export const selectSectionsByBranches = (id: number) =>
-  createSelector(selectSections, (sections) =>
-    sections ? sections.filter((section) => section.branchId === id) : []
-  );
-export const selectBranchesCount = createSelector(
-  selectBranches,
-  (branches: Branch[]) => (branches ? branches.length : 0)
 );

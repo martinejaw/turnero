@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { AppState, selectBranchesCount, selectUser } from 'src/app/core/store';
+import { AppState, selectUser } from 'src/app/core/store';
+import { selectBranchesCount } from 'src/app/core/store/admin/branches/branches.selectors';
 import { AdminPaths, Paths } from 'src/config/paths';
 
 interface MenuItem {
   title: string;
   source: string;
   content: string;
-  path: AdminPaths;
+  path: AdminPaths | string;
 }
 
 @Component({
@@ -31,6 +32,12 @@ export class AdminComponent implements OnInit {
       source: 'alarm_on',
       content: 'Tipos de Turnos',
       path: Paths.TIPO_TURNOS,
+    },
+    {
+      title: 'KKK',
+      source: 'alarm_on',
+      content: 'SADASD',
+      path: 'admin/sections/1',
     },
     {
       title: 'Turnos',

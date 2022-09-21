@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/app/core/auth/guards/auth.guard';
 import { Paths } from 'src/config/paths';
 import { AdminComponent } from './admin.component';
+import { SectionComponent } from './sections/section.component';
 import { SucursalesComponent } from './sucursales/sucursales.component';
 
 const routes: Routes = [
@@ -16,6 +17,11 @@ const routes: Routes = [
   {
     path: Paths.TIPO_TURNOS,
     component: AdminComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/sections/:id',
+    component: SectionComponent,
     canActivate: [AuthGuard],
   },
 ];

@@ -1,0 +1,14 @@
+<h1>Seccion</h1>
+
+<p>ID: {{ sectionId }}</p>
+<p>Nombre: {{ (section$ | async)?.name }}</p>
+<p>Descripcion: {{ (section$ | async)?.description }}</p>
+
+<h2>Crear grupo de turnos</h2>
+<p>Ejemplos de grupos de turnos pueden ser:</p>
+<ul>
+  <li>Salon 1 de cardiologia</li>
+  <li>Peluquero Juan</li>
+</ul>
+
+<button (click)="openCreateDialog()">CREAR NUEVO GRUPO DE TURNOS</button>

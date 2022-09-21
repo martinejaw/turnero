@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -17,6 +18,7 @@ const modules = [
   ReactiveFormsModule,
   MatCardModule,
   MatInputModule,
+  MatCheckboxModule,
   MatButtonModule,
   MatIconModule,
   MatSidenavModule,

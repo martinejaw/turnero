@@ -7,6 +7,7 @@ import { DeleteBranchComponent } from './dialogs/delete-branch/delete-branch.com
 import { EditBranchComponent } from './dialogs/edit-branch/edit-branch.component';
 import { SucursalesComponent } from './sucursales.component';
 import { BranchItemComponent } from './branch-item/branch-item.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { BranchItemComponent } from './branch-item/branch-item.component';
     EditBranchComponent,
     BranchItemComponent,
   ],
-  imports: [CommonModule, MaterialModule, SimpleDialog],
+  imports: [CommonModule, MaterialModule, SimpleDialog, MatTableModule],
   exports: [
     CreateBranchComponent,
     SucursalesComponent,

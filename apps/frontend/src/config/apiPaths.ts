@@ -5,4 +5,5 @@ export const ApiPaths = {
   signup: baseUrl + '/auth/signup',
   retrieveState: baseUrl + '/auth/retrieve-state',
   branches: baseUrl + '/branches',
+  sections: baseUrl + '/sections',
 };

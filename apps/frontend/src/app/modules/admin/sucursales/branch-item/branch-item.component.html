@@ -20,12 +20,30 @@
     </mat-panel-description>
   </mat-expansion-panel-header>
 
-  <div *ngIf="haveSections">
-    <p *ngFor="let section of sectionsByBranch$ | async">
-      {{ section.name }}
-    </p>
-  </div>
-  <div *ngIf="!haveSections">
-    <p>No hay secciones para esta sucursal.</p>
-  </div>
+  <button
+    class="add-section"
+    color="primary"
+    mat-mini-fab
+    (click)="createSection()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <table mat-table [dataSource]="sections" *ngIf="haveSections">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let section">
+        {{ section.name }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+      <td mat-cell *matCellDef="let section">
+        {{ section.description }}
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['name', 'description']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name', 'description']"></tr>
+  </table>
+  <p *ngIf="!haveSections">No hay secciones para esta sucursal.</p>
 </mat-expansion-panel>

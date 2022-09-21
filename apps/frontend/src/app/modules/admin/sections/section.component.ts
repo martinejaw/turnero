@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
 import { selectSectionById } from 'src/app/core/store/admin/sections/sections.selector';
 import { Section } from 'src/app/core/store/admin/sections/sections.type';
-import { CreateGroupComponent } from './dialogs/create-group/create-group.component';
 
 @Component({
   selector: 'app-section',

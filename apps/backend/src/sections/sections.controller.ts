@@ -11,7 +11,7 @@ import {
 import { CreateSectionDto } from './dto/create-section.dto';
 import { SectionsService } from './sections.service';
 
-@Controller('branches')
+@Controller('sections')
 export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
 

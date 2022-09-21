@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/core/prisma/prisma.service';
 import { CreateAppointmentGroupDto } from './dto/create-appointment-group.dto';
 
@@ -7,8 +8,12 @@ export class AppointmentGroupsService {
   constructor(private prisma: PrismaService) {}
 
   create(createAppointmentGroupDto: CreateAppointmentGroupDto) {
+    const { sectionId, ...createAppointmentData } = createAppointmentGroupDto;
     return this.prisma.appointmentGroup.create({
-      data: createAppointmentGroupDto,
+      data: {
+        ...createAppointmentData,
+        section: { connect: { id: sectionId } },
+      },
     });
   }
 
@@ -18,5 +23,9 @@ export class AppointmentGroupsService {
 
   findOne(id: number) {
     return this.prisma.appointmentGroup.findUnique({ where: { id } });
+  }
+
+  findBy(where: Prisma.AppointmentGroupWhereInput) {
+    return this.prisma.appointmentGroup.findMany({ where });
   }
 }

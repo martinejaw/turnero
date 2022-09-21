@@ -1,0 +1,19 @@
+<app-simple-dialog
+  title="Editar Grupo de Turnos"
+  [onClose]="onClose"
+  [onAccept]="onAccept"
+  [dialogRef]="dialogRef"
+>
+  <form [formGroup]="form">
+    <p>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Address"
+          formControlName="address"
+        />
+      </mat-form-field>
+    </p>
+  </form>
+</app-simple-dialog>

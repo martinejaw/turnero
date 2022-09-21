@@ -4,6 +4,7 @@ import { AppointmentGroupsController } from './appointment-groups.controller';
 
 @Module({
   controllers: [AppointmentGroupsController],
-  providers: [AppointmentGroupsService]
+  providers: [AppointmentGroupsService],
+  exports: [AppointmentGroupsService],
 })
 export class AppointmentGroupsModule {}

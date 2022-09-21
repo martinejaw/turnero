@@ -1,4 +1,4 @@
-import { Branch, Business, User } from '@prisma/client';
+import { AppointmentGroup, Branch, Business, User } from '@prisma/client';
 import { Section } from 'src/sections/entities/section.entity';
 
 export type SessionDto = {
@@ -11,4 +11,5 @@ export interface SessionData {
   business: Business;
   branches: Branch[];
   sections: Section[];
+  appointmentGroups: AppointmentGroup[];
 }

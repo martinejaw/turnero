@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { AppointmentGroup } from '../appointmentGroups/appointment-groups.type';
 import { Branch } from '../branches/branches.type';
 import { Business } from '../business/business.type';
 import { Section } from '../sections/sections.type';
@@ -11,6 +12,7 @@ export const login = createAction(
     business: Business;
     branches: Branch[];
     sections: Section[];
+    appointmentGroups: AppointmentGroup[];
   }>()
 );
 

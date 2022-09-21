@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
 import { selectSectionById } from 'src/app/core/store/admin/sections/sections.selector';
 import { Section } from 'src/app/core/store/admin/sections/sections.type';
+import { CreateGroupComponent } from '../appointmentGroups/dialogs/create-group/create-group.component';
 
 @Component({
   selector: 'app-section',
@@ -27,5 +28,9 @@ export class SectionComponent implements OnInit {
     this.section$ = this.store.pipe(select(selectSectionById(this.sectionId)));
   }
 
-  openCreateDialog() {}
+  openCreateDialog() {
+    this.dialog.open(CreateGroupComponent, {
+      data: { sectionId: this.sectionId },
+    });
+  }
 }

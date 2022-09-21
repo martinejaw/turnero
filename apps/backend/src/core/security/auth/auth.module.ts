@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { AppointmentGroupsModule } from 'src/appointment-groups/appointment-groups.module';
 import { BranchesModule } from 'src/branches/branches.module';
 import { BusinessModule } from 'src/business/business.module';
 import { SectionsModule } from 'src/sections/sections.module';
@@ -18,6 +19,7 @@ import { LocalStrategy } from './local.strategy';
     BusinessModule,
     BranchesModule,
     SectionsModule,
+    AppointmentGroupsModule,
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '2d' },

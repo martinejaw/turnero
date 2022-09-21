@@ -25,9 +25,9 @@ export class BranchItemComponent implements OnInit {
       select(selectSectionsByBranches(this.branch.id))
     );
 
-    this.sectionsByBranch$.subscribe(
-      (obs) => (this.haveSections = obs.length > 0)
-    );
+    this.sectionsByBranch$.subscribe((obs) => {
+      this.haveSections = obs.length > 0;
+    });
   }
 
   openDeleteDialog(id: number) {

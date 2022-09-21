@@ -6,6 +6,7 @@ import { CreateBranchComponent } from './dialogs/create-branch/create-branch.com
 import { DeleteBranchComponent } from './dialogs/delete-branch/delete-branch.component';
 import { EditBranchComponent } from './dialogs/edit-branch/edit-branch.component';
 import { SucursalesComponent } from './sucursales.component';
+import { BranchItemComponent } from './branch-item/branch-item.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { SucursalesComponent } from './sucursales.component';
     SucursalesComponent,
     DeleteBranchComponent,
     EditBranchComponent,
+    BranchItemComponent,
   ],
   imports: [CommonModule, MaterialModule, SimpleDialog],
   exports: [
@@ -20,6 +22,7 @@ import { SucursalesComponent } from './sucursales.component';
     SucursalesComponent,
     DeleteBranchComponent,
     EditBranchComponent,
+    BranchItemComponent,
   ],
 })
 export class SucursalesModule {}

@@ -32,7 +32,7 @@ export const selectSections = createSelector(
 // Branches
 export const selectSectionsByBranches = (id: number) =>
   createSelector(selectSections, (sections) =>
-    sections ? sections.filter((section) => section.branchId === id) : null
+    sections ? sections.filter((section) => section.branchId === id) : []
   );
 export const selectBranchesCount = createSelector(
   selectBranches,

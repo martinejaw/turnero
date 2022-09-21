@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SectionsService } from '../sections.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { SectionsService } from '../sections.service';
 })
 export class CreateSectionComponent implements OnInit {
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private sectionService: SectionsService,
     public dialogRef: MatDialogRef<CreateSectionComponent>
   ) {}
@@ -23,7 +24,7 @@ export class CreateSectionComponent implements OnInit {
   onAccept = () => {
     if (this.form.valid) {
       const { name, description } = this.form.value;
-      this.sectionService.createSection(name, description);
+      this.sectionService.createSection(name, description, this.data.branchId);
     }
   };
 

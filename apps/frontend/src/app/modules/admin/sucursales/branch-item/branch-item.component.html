@@ -24,7 +24,7 @@
     class="add-section"
     color="primary"
     mat-mini-fab
-    (click)="createSection()"
+    (click)="openCreateSectionDialog()"
   >
     <mat-icon>add</mat-icon>
   </button>
@@ -42,8 +42,22 @@
         {{ section.description }}
       </td>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="['name', 'description']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['name', 'description']"></tr>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let section">
+        <button mat-icon-button (click)="navigateToSectionPage(section.id)">
+          <mat-icon>link</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="['name', 'description', 'action']"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['name', 'description', 'action']"
+    ></tr>
   </table>
   <p *ngIf="!haveSections">No hay secciones para esta sucursal.</p>
 </mat-expansion-panel>

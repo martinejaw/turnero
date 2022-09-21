@@ -18,16 +18,13 @@ export class SectionsService {
 
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
-  async createSection(name: string, description: string) {
+  async createSection(name: string, description: string, branchId: number) {
     try {
-      const lastBranch = getState<Branch>(this.branches$);
-
-      console.log(lastBranch?.id);
       const resp = await lastValueFrom(
         this.http.post<SectionResponse>(ApiPaths.sections, {
           name: name,
           description: description,
-          branchId: lastBranch?.id,
+          branchId: branchId,
         })
       );
 

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
@@ -22,7 +23,11 @@ export class BranchItemComponent implements OnInit {
   sections: Section[];
   haveSections: Boolean;
 
-  constructor(private store: Store<AppState>, public dialog: MatDialog) {}
+  constructor(
+    private store: Store<AppState>,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.sectionsByBranch$ = this.store.pipe(
@@ -47,7 +52,13 @@ export class BranchItemComponent implements OnInit {
     });
   }
 
-  createSection() {
-    this.dialog.open(CreateSectionComponent);
+  openCreateSectionDialog() {
+    this.dialog.open(CreateSectionComponent, {
+      data: { branchId: this.branch.id },
+    });
+  }
+
+  navigateToSectionPage(id: number) {
+    this.router.navigate([`/admin/sections/${id}`]);
   }
 }

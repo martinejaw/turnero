@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState, selectSectionsByBranches } from 'src/app/core/store';
-import { Branch } from 'src/app/core/store/branches/branches.type';
-import { Section } from 'src/app/core/store/sections/sections.type';
+import { Branch } from 'src/app/core/store/admin/branches/branches.type';
+import { Section } from 'src/app/core/store/admin/sections/sections.type';
 import { DeleteBranchComponent } from '../dialogs/delete-branch/delete-branch.component';
 import { EditBranchComponent } from '../dialogs/edit-branch/edit-branch.component';
 

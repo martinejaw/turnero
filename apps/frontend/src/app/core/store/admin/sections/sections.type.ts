@@ -10,3 +10,9 @@ export type NewSection = {
   description: string;
   branchId: number;
 };
+
+export type EditSection = {
+  id: number;
+  name: string;
+  description: string;
+};

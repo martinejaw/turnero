@@ -55,9 +55,7 @@ export class SucursalService {
 
   async deleteBranch(id: number) {
     try {
-      const resp = await lastValueFrom(
-        this.http.delete<any>(`${ApiPaths.branches}/${id}`)
-      );
+      await lastValueFrom(this.http.delete<any>(`${ApiPaths.branches}/${id}`));
 
       this.store.dispatch(deleteBranch({ id }));
     } catch {

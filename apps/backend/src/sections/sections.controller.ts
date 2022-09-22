@@ -6,9 +6,9 @@ import {
   Param,
   Delete,
   Put,
-  Query,
 } from '@nestjs/common';
 import { CreateSectionDto } from './dto/create-section.dto';
+import { EditSectionDto } from './dto/edit-section.dto';
 import { SectionsService } from './sections.service';
 
 @Controller('sections')
@@ -33,5 +33,10 @@ export class SectionsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.sectionsService.findOne(+id);
+  }
+
+  @Put()
+  editOne(@Body() editSectionDto: EditSectionDto) {
+    return this.sectionsService.editOneBy(editSectionDto);
   }
 }

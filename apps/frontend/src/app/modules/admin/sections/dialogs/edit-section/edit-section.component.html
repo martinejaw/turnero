@@ -1,0 +1,29 @@
+<app-simple-dialog
+  title="Editar seccion"
+  [onClose]="onClose"
+  [onAccept]="onAccept"
+  [dialogRef]="dialogRef"
+>
+  <form [formGroup]="form">
+    <p>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Nombre"
+          formControlName="name"
+        />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Descripcion"
+          formControlName="description"
+        />
+      </mat-form-field>
+    </p>
+  </form>
+</app-simple-dialog>

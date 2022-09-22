@@ -5,8 +5,13 @@ import { lastValueFrom } from 'rxjs';
 import { AppState, selectBranches } from 'src/app/core/store';
 import { Branch } from 'src/app/core/store/admin/branches/branches.type';
 import { Business } from 'src/app/core/store/admin/business/business.type';
-import { addSection } from 'src/app/core/store/admin/sections/sections.actions';
 import {
+  addSection,
+  deleteSection,
+  editSection,
+} from 'src/app/core/store/admin/sections/sections.actions';
+import {
+  EditSection,
   NewSection,
   Section,
 } from 'src/app/core/store/admin/sections/sections.type';
@@ -28,6 +33,26 @@ export class SectionsService {
       );
 
       this.store.dispatch(addSection({ section: resp }));
+    } catch {
+      console.log('Explotó');
+    }
+  }
+
+  async editSection(section: EditSection) {
+    try {
+      const resp = await lastValueFrom(
+        this.http.put<Section>(ApiPaths.sections, section)
+      );
+      this.store.dispatch(editSection({ section: resp }));
+    } catch {
+      console.log('Explotó');
+    }
+  }
+
+  async deleteSection(id: number) {
+    try {
+      await lastValueFrom(this.http.delete<any>(`${ApiPaths.sections}/${id}`));
+      this.store.dispatch(deleteSection({ id }));
     } catch {
       console.log('Explotó');
     }

@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { NewSection } from 'src/app/core/store/admin/sections/sections.type';
-import { SectionsService } from '../sections.service';
+import { SectionsService } from '../../sections.service';
 
 @Component({
   selector: 'app-create-section',
@@ -10,7 +10,7 @@ import { SectionsService } from '../sections.service';
 })
 export class CreateSectionComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: { branchId: number },
     private sectionService: SectionsService,
     public dialogRef: MatDialogRef<CreateSectionComponent>
   ) {}

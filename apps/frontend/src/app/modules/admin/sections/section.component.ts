@@ -20,6 +20,8 @@ export class SectionComponent implements OnInit {
   protected section$: Observable<Section | undefined>;
   protected appointmentGroups$: Observable<AppointmentGroup[]>;
 
+  public startTime: Date;
+
   constructor(
     private route: ActivatedRoute,
     private store: Store<AppState>,

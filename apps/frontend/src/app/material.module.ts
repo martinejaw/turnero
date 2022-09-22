@@ -11,6 +11,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 
+import {
+  NgxMatTimepickerModule,
+  NgxMatNativeDateModule,
+} from '@angular-material-components/datetime-picker';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const modules = [
@@ -26,6 +31,9 @@ const modules = [
   MatListModule,
   MatDialogModule,
   MatExpansionModule,
+
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
 ];
 
 @NgModule({

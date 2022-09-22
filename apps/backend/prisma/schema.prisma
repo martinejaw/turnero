@@ -62,6 +62,17 @@ model AppointmentGroup {
   sectionId Int
 
   procedureTypes ProcedureType[]
+  availabilities Availability[]
+}
+
+model Availability {
+  id          Int @id @default(autoincrement())
+  day         Int           // 0 Monday, 6 Sunday
+  start_time  DateTime
+  duration    Int           // Time in minutes
+
+  appointmentGroup    AppointmentGroup @relation(fields: [appointmentGroupId], references: [id])
+  appointmentGroupId  Int
 }
 
 // Ej: Consulta, Operacion clinica X, lavado de cabeza

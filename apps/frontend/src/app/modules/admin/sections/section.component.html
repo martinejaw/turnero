@@ -18,4 +18,21 @@
   <p>Nombre: {{ group.name }}</p>
   <p>Descripcion: {{ group.description }}</p>
   <p>Es publico?: {{ group.public }}</p>
+
+  <p style="display: flex">
+    Disponibilidad:
+    <ngx-mat-timepicker
+      [(ngModel)]="startTime"
+      [disabled]="true"
+      [showSpinners]="false"
+      [stepMinute]="10"
+    ></ngx-mat-timepicker>
+    a
+    <ngx-mat-timepicker
+      [(ngModel)]="startTime"
+      [disabled]="true"
+      [showSpinners]="false"
+      [stepMinute]="10"
+    ></ngx-mat-timepicker>
+  </p>
 </div>

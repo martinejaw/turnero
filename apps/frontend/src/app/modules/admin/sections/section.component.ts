@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
+import { selectAppointmentGroupsBySection } from 'src/app/core/store/admin/appointmentGroups/appointment-groups.selectors';
+import { AppointmentGroup } from 'src/app/core/store/admin/appointmentGroups/appointment-groups.type';
 import { selectSectionById } from 'src/app/core/store/admin/sections/sections.selector';
 import { Section } from 'src/app/core/store/admin/sections/sections.type';
 import { CreateGroupComponent } from '../appointmentGroups/dialogs/create-group/create-group.component';
@@ -16,6 +18,7 @@ import { CreateGroupComponent } from '../appointmentGroups/dialogs/create-group/
 export class SectionComponent implements OnInit {
   protected sectionId: number;
   protected section$: Observable<Section | undefined>;
+  protected appointmentGroups$: Observable<AppointmentGroup[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +29,9 @@ export class SectionComponent implements OnInit {
   ngOnInit(): void {
     this.sectionId = +(this.route.snapshot.paramMap.get('id') as string);
     this.section$ = this.store.pipe(select(selectSectionById(this.sectionId)));
+    this.appointmentGroups$ = this.store.pipe(
+      select(selectAppointmentGroupsBySection(this.sectionId))
+    );
   }
 
   openCreateDialog() {

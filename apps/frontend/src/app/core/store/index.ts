@@ -27,3 +27,8 @@ export const selectSections = createSelector(
   selectAdminSlice,
   (state: AdminState) => state.sections
 );
+
+export const selectAppointmentGroups = createSelector(
+  selectAdminSlice,
+  (state: AdminState) => state.appointmentGroups
+);

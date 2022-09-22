@@ -3,7 +3,7 @@ import { selectSections } from '../..';
 
 export const selectSectionsByBranches = (id: number) =>
   createSelector(selectSections, (sections) =>
-    sections ? sections.filter((section) => section.branchId === id) : []
+    sections.filter((section) => section.branchId === id)
   );
 
 export const selectSectionById = (id: number) =>

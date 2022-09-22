@@ -1,6 +1,7 @@
 import { createSelector } from '@ngrx/store';
-import { selectBranches } from '../..';
+import { selectAppointmentGroups } from '../..';
 
-export const selectBranchesCount = createSelector(selectBranches, (branches) =>
-  branches ? branches.length : 0
-);
+export const selectAppointmentGroupsBySection = (idSection: number) =>
+  createSelector(selectAppointmentGroups, (appointmentGroups) =>
+    appointmentGroups.filter((group) => group.sectionId == idSection)
+  );

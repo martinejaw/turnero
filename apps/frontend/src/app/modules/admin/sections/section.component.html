@@ -12,3 +12,10 @@
 </ul>
 
 <button (click)="openCreateDialog()">CREAR NUEVO GRUPO DE TURNOS</button>
+
+<div *ngFor="let group of appointmentGroups$ | async">
+  <h3>ID grupo: {{ group.id }}</h3>
+  <p>Nombre: {{ group.name }}</p>
+  <p>Descripcion: {{ group.description }}</p>
+  <p>Es publico?: {{ group.public }}</p>
+</div>

@@ -22,7 +22,7 @@ export class BranchItemComponent implements OnInit {
   @Input() branch: Branch;
   sectionsByBranch$: Observable<Section[]>;
   sections: Section[];
-  haveSections: Boolean;
+  haveSections: boolean;
 
   constructor(
     private store: Store<AppState>,

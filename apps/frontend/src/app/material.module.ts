@@ -10,6 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
 
 import {
   NgxMatTimepickerModule,
@@ -31,6 +32,7 @@ const modules = [
   MatListModule,
   MatDialogModule,
   MatExpansionModule,
+  MatTableModule,
 
   NgxMatNativeDateModule,
   NgxMatTimepickerModule,

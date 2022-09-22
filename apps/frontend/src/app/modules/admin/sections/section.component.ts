@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -19,8 +20,8 @@ export class SectionComponent implements OnInit {
   protected sectionId: number;
   protected section$: Observable<Section | undefined>;
   protected appointmentGroups$: Observable<AppointmentGroup[]>;
-
-  public startTime: Date;
+  public dataSource: AppointmentGroup[];
+  protected haveGroups: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,10 @@ export class SectionComponent implements OnInit {
     this.appointmentGroups$ = this.store.pipe(
       select(selectAppointmentGroupsBySection(this.sectionId))
     );
+    this.appointmentGroups$.subscribe((groups) => {
+      this.haveGroups = groups.length > 0;
+      this.dataSource = groups;
+    });
   }
 
   openCreateDialog() {

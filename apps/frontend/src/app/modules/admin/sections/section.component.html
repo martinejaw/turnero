@@ -13,26 +13,65 @@
 
 <button (click)="openCreateDialog()">CREAR NUEVO GRUPO DE TURNOS</button>
 
-<div *ngFor="let group of appointmentGroups$ | async">
-  <h3>ID grupo: {{ group.id }}</h3>
-  <p>Nombre: {{ group.name }}</p>
-  <p>Descripcion: {{ group.description }}</p>
-  <p>Es publico?: {{ group.public }}</p>
+<p *ngIf="!haveGroups">No hay secciones para esta sucursal.</p>
+<table mat-table [dataSource]="dataSource" *ngIf="haveGroups">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let group">
+      {{ group.name }}
+    </td>
+  </ng-container>
 
-  <p style="display: flex">
-    Disponibilidad:
-    <ngx-mat-timepicker
-      [(ngModel)]="startTime"
-      [disabled]="true"
-      [showSpinners]="false"
-      [stepMinute]="10"
-    ></ngx-mat-timepicker>
-    a
-    <ngx-mat-timepicker
-      [(ngModel)]="startTime"
-      [disabled]="true"
-      [showSpinners]="false"
-      [stepMinute]="10"
-    ></ngx-mat-timepicker>
-  </p>
-</div>
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+    <td mat-cell *matCellDef="let group">
+      {{ group.description }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="public">
+    <th mat-header-cell *matHeaderCellDef>Publico</th>
+    <td mat-cell *matCellDef="let group">
+      <mat-checkbox disabled="true" [checked]="group.public" [color]="'accent'">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="availability">
+    <th mat-header-cell *matHeaderCellDef>Disponibilidad</th>
+    <td mat-cell *matCellDef="let group">VER</td>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let group">
+      <button mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>link</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr
+    mat-header-row
+    *matHeaderRowDef="[
+      'name',
+      'description',
+      'public',
+      'availability',
+      'action'
+    ]"
+  ></tr>
+  <tr
+    mat-row
+    *matRowDef="
+      let row;
+      columns: ['name', 'description', 'public', 'availability', 'action']
+    "
+  ></tr>
+</table>

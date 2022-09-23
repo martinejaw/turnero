@@ -1,0 +1,31 @@
+<mat-expansion-panel *ngFor="let day of days">
+  <mat-expansion-panel-header>
+    <mat-panel-title> {{ day.label }} </mat-panel-title>
+    <mat-panel-description class="expansion-description">
+      <p>Disponibilidades</p>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <p *ngFor="let avail of day.availabilities">
+    Desde las {{ avail.start_time | date: "shortTime" }} durante
+    {{ avail.duration }} minutos
+  </p>
+
+  <div class="new-availability">
+    <ngx-mat-timepicker
+      [stepMinute]="10"
+      [defaultTime]="[12, 0, 0]"
+    ></ngx-mat-timepicker>
+
+    hasta
+
+    <ngx-mat-timepicker
+      [stepMinute]="10"
+      [defaultTime]="[12, 0, 0]"
+    ></ngx-mat-timepicker>
+
+    <button class="add-availability" color="primary" mat-mini-fab>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-expansion-panel>

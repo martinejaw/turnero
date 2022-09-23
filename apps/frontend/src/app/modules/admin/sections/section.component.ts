@@ -10,6 +10,7 @@ import { AppointmentGroup } from 'src/app/core/store/admin/appointmentGroups/app
 import { selectSectionById } from 'src/app/core/store/admin/sections/sections.selector';
 import { Section } from 'src/app/core/store/admin/sections/sections.type';
 import { CreateGroupComponent } from '../appointmentGroups/dialogs/create-group/create-group.component';
+import { EditGroupComponent } from '../appointmentGroups/dialogs/edit-group/edit-group.component';
 
 @Component({
   selector: 'app-section',
@@ -44,6 +45,12 @@ export class SectionComponent implements OnInit {
   openCreateDialog() {
     this.dialog.open(CreateGroupComponent, {
       data: { sectionId: this.sectionId },
+    });
+  }
+
+  openEditDialog(group: AppointmentGroup) {
+    this.dialog.open(EditGroupComponent, {
+      data: { group },
     });
   }
 }

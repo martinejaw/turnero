@@ -1,11 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-interface FormInput {
-  id: number;
-  address: string;
-}
+import { AppointmentGroup } from 'src/app/core/store/admin/appointmentGroups/appointment-groups.type';
+import { AppointmentGroupsService } from '../../appointment-groups.service';
 
 @Component({
   selector: 'app-edit-group',
@@ -13,22 +10,28 @@ interface FormInput {
 })
 export class EditGroupComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: FormInput,
-    public dialogRef: MatDialogRef<EditGroupComponent>
+    private appointmentGroupService: AppointmentGroupsService,
+    public dialogRef: MatDialogRef<EditGroupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { group: AppointmentGroup }
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      name: new FormControl(this.data.group.name, Validators.required),
+      description: new FormControl(
+        this.data.group.description,
+        Validators.required
+      ),
+      public: new FormControl(this.data.group.public, Validators.required),
+      availabilities: new FormControl(this.data.group.availabilities),
+    });
+  }
 
-  form: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    public: new FormControl(false, Validators.required),
-  });
+  form: FormGroup;
 
   onAccept = () => {
     if (this.form.valid) {
-      const { address } = this.form.value;
-      // this.sucursalService.editGroup(this.data.id, address);
+      // TODO
     }
   };
 

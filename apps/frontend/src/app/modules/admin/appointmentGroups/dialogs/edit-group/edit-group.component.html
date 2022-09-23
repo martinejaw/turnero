@@ -10,10 +10,27 @@
         <input
           type="text"
           matInput
-          placeholder="Address"
-          formControlName="address"
+          placeholder="Nombre"
+          formControlName="name"
         />
       </mat-form-field>
     </p>
+    <p>
+      <mat-form-field>
+        <input
+          type="text"
+          matInput
+          placeholder="Descripción"
+          formControlName="description"
+        />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-checkbox formControlName="public">
+        Es público (opción de registro por parte de los usuarios)
+      </mat-checkbox>
+    </p>
+    <app-day-panel [availabilities]="form.value.availabilities">
+    </app-day-panel>
   </form>
 </app-simple-dialog>

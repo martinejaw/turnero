@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { AppointmentGroupsService } from './appointment-groups.service';
 import { CreateAppointmentGroupDto } from './dto/create-appointment-group.dto';

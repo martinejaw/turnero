@@ -8,10 +8,10 @@ import { CreateAppointmentGroupDto } from './dto/create-appointment-group.dto';
 export class AppointmentGroupsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createAppointmentGroupDto: CreateAppointmentGroupDto) {
+  async create(createAppointmentGroupDto: CreateAppointmentGroupDto) {
     const { sectionId, availabilities, ...createAppointmentData } =
       createAppointmentGroupDto;
-    return this.prisma.appointmentGroup.create({
+    let newAppointmentGroup = await this.prisma.appointmentGroup.create({
       data: {
         ...createAppointmentData,
         section: { connect: { id: sectionId } },
@@ -22,10 +22,14 @@ export class AppointmentGroupsService {
         },
       },
     });
+
+    return this.findOne(newAppointmentGroup.id);
   }
 
   findAll() {
-    return this.prisma.appointmentGroup.findMany();
+    return this.prisma.appointmentGroup.findMany({
+      include: { availabilities: true },
+    });
   }
 
   findOne(id: number) {
@@ -36,6 +40,9 @@ export class AppointmentGroupsService {
   }
 
   findBy(where: Prisma.AppointmentGroupWhereInput) {
-    return this.prisma.appointmentGroup.findMany({ where });
+    return this.prisma.appointmentGroup.findMany({
+      where,
+      include: { availabilities: true },
+    });
   }
 }

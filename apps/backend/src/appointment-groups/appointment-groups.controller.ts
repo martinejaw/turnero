@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { AppointmentGroupsService } from './appointment-groups.service';
 import { CreateAppointmentGroupDto } from './dto/create-appointment-group.dto';
+import { EditAppointmentGroupDto } from './dto/edit-appointmet-group.dto';
 
 @Controller('appointment-groups')
 export class AppointmentGroupsController {
@@ -20,6 +21,11 @@ export class AppointmentGroupsController {
   @Post()
   create(@Body() createAppointmentGroupDto: CreateAppointmentGroupDto) {
     return this.appointmentGroupsService.create(createAppointmentGroupDto);
+  }
+
+  @Put()
+  editOne(@Body() editAppointmentGroupDto: EditAppointmentGroupDto) {
+    return this.appointmentGroupsService.editOneBy(editAppointmentGroupDto);
   }
 
   @Get()

@@ -19,4 +19,10 @@ export class AvailabilitiesService {
       skipDuplicates: true,
     });
   }
+
+  deleteMany(appointmentGroupId: number) {
+    return this.prisma.availability.deleteMany({
+      where: { appointmentGroupId },
+    });
+  }
 }

@@ -30,7 +30,10 @@
         Es público (opción de registro por parte de los usuarios)
       </mat-checkbox>
     </p>
-    <app-day-panel [availabilities]="form.value.availabilities">
+    <app-day-panel
+      [availabilities]="form.value.availabilities"
+      (newAvailability)="newAvailability($event)"
+    >
     </app-day-panel>
   </form>
 </app-simple-dialog>

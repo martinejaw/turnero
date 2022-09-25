@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { lastValueFrom } from 'rxjs';
 import { AppState } from 'src/app/core/store';
-import { addAppointmentGroup } from 'src/app/core/store/admin/appointmentGroups/appointment-groups.actions';
+import {
+  addAppointmentGroup,
+  editAppointmentGroup,
+} from 'src/app/core/store/admin/appointmentGroups/appointment-groups.actions';
 import { AppointmentGroup } from 'src/app/core/store/admin/appointmentGroups/appointment-groups.type';
 import { ApiPaths } from 'src/config/apiPaths';
 
@@ -19,6 +22,17 @@ export class AppointmentGroupsService {
         this.http.post<AppointmentGroup>(ApiPaths.appointmentGroups, group)
       );
       this.store.dispatch(addAppointmentGroup({ appointmentGroup: resp }));
+    } catch {
+      console.log('Explotó');
+    }
+  }
+
+  async editGroup(group: any) {
+    try {
+      const resp = await lastValueFrom(
+        this.http.put<AppointmentGroup>(ApiPaths.appointmentGroups, group)
+      );
+      this.store.dispatch(editAppointmentGroup({ appointmentGroup: resp }));
     } catch {
       console.log('Explotó');
     }

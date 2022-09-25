@@ -13,6 +13,7 @@
 
   <div class="new-availability">
     <ngx-mat-timepicker
+      [(ngModel)]="day.start_time"
       [stepMinute]="10"
       [defaultTime]="[12, 0, 0]"
     ></ngx-mat-timepicker>
@@ -20,11 +21,17 @@
     hasta
 
     <ngx-mat-timepicker
+      [(ngModel)]="day.end_time"
       [stepMinute]="10"
       [defaultTime]="[12, 0, 0]"
     ></ngx-mat-timepicker>
 
-    <button class="add-availability" color="primary" mat-mini-fab>
+    <button
+      class="add-availability"
+      color="primary"
+      mat-mini-fab
+      (click)="addAvailability(day.day)"
+    >
       <mat-icon>add</mat-icon>
     </button>
   </div>

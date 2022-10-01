@@ -6,3 +6,19 @@ table {
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
   background-color: rgb(57, 160, 43) !important;
 }
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.list-container {
+  padding: 20px;
+  width: 800px;
+}

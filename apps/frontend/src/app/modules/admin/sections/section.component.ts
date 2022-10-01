@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/core/store';
@@ -9,6 +9,7 @@ import { selectAppointmentGroupsBySection } from 'src/app/core/store/admin/appoi
 import { AppointmentGroup } from 'src/app/core/store/admin/appointmentGroups/appointment-groups.type';
 import { selectSectionById } from 'src/app/core/store/admin/sections/sections.selector';
 import { Section } from 'src/app/core/store/admin/sections/sections.type';
+import { Paths } from 'src/config/paths';
 import { CreateGroupComponent } from '../appointmentGroups/dialogs/create-group/create-group.component';
 import { EditGroupComponent } from '../appointmentGroups/dialogs/edit-group/edit-group.component';
 
@@ -27,6 +28,7 @@ export class SectionComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private store: Store<AppState>,
+    private router: Router,
     public dialog: MatDialog
   ) {}
 
@@ -40,6 +42,10 @@ export class SectionComponent implements OnInit {
       this.haveGroups = groups.length > 0;
       this.dataSource = groups;
     });
+  }
+
+  goBack() {
+    this.router.navigate([Paths.SUCURSAL]);
   }
 
   openCreateDialog() {

@@ -18,7 +18,8 @@
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
     >
-      <mat-nav-list>
+      <mat-nav-list style="margin: 0 10px">
+        <h3>{{ (user$ | async)?.email }}</h3>
         <a mat-list-item routerLink="." (click)="logoutAction()">Logout</a>
       </mat-nav-list>
     </mat-sidenav>

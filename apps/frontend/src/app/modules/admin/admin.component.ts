@@ -34,12 +34,6 @@ export class AdminComponent implements OnInit {
       path: Paths.TIPO_TURNOS,
     },
     {
-      title: 'KKK',
-      source: 'alarm_on',
-      content: 'SADASD',
-      path: 'admin/sections/1',
-    },
-    {
       title: 'Turnos',
       source: 'calendar_today',
       content: 'Turnos',

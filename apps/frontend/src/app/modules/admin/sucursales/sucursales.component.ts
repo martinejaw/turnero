@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppState, selectBranches, selectSections } from 'src/app/core/store';
+import { Paths } from 'src/config/paths';
 import { CreateBranchComponent } from './dialogs/create-branch/create-branch.component';
 import { DeleteBranchComponent } from './dialogs/delete-branch/delete-branch.component';
 import { EditBranchComponent } from './dialogs/edit-branch/edit-branch.component';
@@ -25,7 +26,7 @@ export class SucursalesComponent implements OnInit {
   ngOnInit(): void {}
 
   goBack() {
-    this.router.navigate(['/admin']);
+    this.router.navigate([Paths.ADMIN]);
   }
 
   openDialog() {

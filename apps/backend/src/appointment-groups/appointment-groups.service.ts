@@ -33,6 +33,7 @@ export class AppointmentGroupsService {
   async editOneBy(editAppointmentGroupDto: EditAppointmentGroupDto) {
     try {
       let { id, name, description, availabilities } = editAppointmentGroupDto;
+      const newAvailabilities = availabilities ?? [];
       let deletedAvaialabilities = this.availabilityService.deleteMany(
         editAppointmentGroupDto.id,
       );
@@ -44,7 +45,9 @@ export class AppointmentGroupsService {
           public: editAppointmentGroupDto.public,
           availabilities: {
             createMany: {
-              data: availabilities ?? [],
+              data: newAvailabilities.map(
+                ({ appointmentGroupId, ...avail }) => avail,
+              ),
             },
           },
         },

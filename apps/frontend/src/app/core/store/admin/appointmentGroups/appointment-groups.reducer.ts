@@ -33,6 +33,7 @@ export const appointmentGroupsReducer = createReducer(
           name: action.appointmentGroup.name,
           description: action.appointmentGroup.description,
           public: action.appointmentGroup.public,
+          availabilities: action.appointmentGroup.availabilities,
         };
       }
 
